@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "scrape": "node scripts/main.js"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
     "vite": "^5.3.4"
   },
   "dependencies": {
-    "d3": "^7.9.0"
+    "d3": "^7.9.0",
+    "happy-dom": "^14.12.3"
   }
 }
