@@ -32,6 +32,13 @@ describe("parsers", () => {
   });
 
   describe("getName", () => {
-    it.todo("should parse the wikipedia string for the president's name", () => {});
+    it("should parse the wikipedia string for the president's name", ({ expect }) => {
+      td.innerHTML = `<td data-sort-value="Washington, George"><b><a href="/wiki/George_Washington" title="George Washington">George Washington</a></b><br><span style="font-size:85%;">(1732���1799)</span><br><sup id="cite_ref-FOOTNOTEMcDonald2000_19-0" class="reference"><a href="#cite_note-FOOTNOTEMcDonald2000-19">[17]</a></sup>
+</td>`;
+
+      const actual = getName(td);
+
+      expect(actual).toBe("George Washington");
+    });
   });
 });
