@@ -1,5 +1,5 @@
 import { getDocument } from "./get-document.js";
-import { getPortraitSrc, getName } from "./parsers.js";
+import { getPortraitSrc, getName, getTerm } from "./parsers.js";
 
 async function main() {
   try {
@@ -27,11 +27,14 @@ async function main() {
 
       const portrait = getPortraitSrc(portraitNode);
       const name = getName(nameBirthDeathNode);
+      const { startTerm, endTerm } = getTerm(termNode);
 
       return {
         number: th.textContent.trim(),
         portrait,
         name,
+        startTerm,
+        endTerm,
       };
     });
 

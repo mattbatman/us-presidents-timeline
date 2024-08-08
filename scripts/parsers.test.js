@@ -1,6 +1,6 @@
 import { describe, it, beforeEach, afterEach } from "vitest";
 import { Window } from "happy-dom";
-import { getPortraitSrc, getName } from "./parsers.js";
+import { getPortraitSrc, getName, getTerm } from "./parsers.js";
 
 describe("parsers", () => {
   let window = null;
@@ -32,13 +32,41 @@ describe("parsers", () => {
   });
 
   describe("getName", () => {
-    it("should parse the wikipedia string for the president's name", ({ expect }) => {
+    it("should parse the wikipedia string for the president's name", ({
+      expect,
+    }) => {
       td.innerHTML = `<td data-sort-value="Washington, George"><b><a href="/wiki/George_Washington" title="George Washington">George Washington</a></b><br><span style="font-size:85%;">(1732���1799)</span><br><sup id="cite_ref-FOOTNOTEMcDonald2000_19-0" class="reference"><a href="#cite_note-FOOTNOTEMcDonald2000-19">[17]</a></sup>
 </td>`;
 
       const actual = getName(td);
 
       expect(actual).toBe("George Washington");
+    });
+  });
+
+  describe("getTerm", () => {
+    it("should return the start and end term dates as strings in an object", ({
+      expect,
+    }) => {
+      td.innerHTML = `
+      <td>
+        <span data-sort-value="000000001789-04-30-0000" style="white-space:nowrap">
+          April 30, 1789
+        </span>
+        <br>–<br>
+        <span data-sort-value="000000001797-03-04-0000" style="white-space:nowrap">
+          March 4, 1797
+        </span>
+        </td>
+      `;
+
+      const actual = getTerm(td);
+      const expected = {
+        startTerm: "April 30, 1789",
+        endTerm: "March 4, 1797",
+      };
+
+      expect(actual).toEqual(expected);
     });
   });
 });

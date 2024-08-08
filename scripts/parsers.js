@@ -11,4 +11,11 @@ function getName(node) {
   return name;
 }
 
-export { getPortraitSrc, getName };
+function getTerm(node) {
+  const text = node.textContent.trim();
+  const [startTerm, endTerm] = text.split("–").map((t) => t.trim());
+
+  return { startTerm, endTerm };
+}
+
+export { getPortraitSrc, getName, getTerm };
