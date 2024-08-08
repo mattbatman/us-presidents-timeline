@@ -2,10 +2,10 @@ import { writeFile } from "fs";
 import { join } from "path";
 import { cwd } from "process";
 
-async function write(json) {
+function write(json) {
   const path = join(cwd(), "src", "presidents.json");
 
-  await writeFile(path, json, "utf8", function (error) {
+  writeFile(path, json, "utf8", function (error) {
     if (error) {
       console.log("----------");
       console.log(error);
