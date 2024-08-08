@@ -1,5 +1,6 @@
 import { getDocument } from "./get-document.js";
 import { getPortraitSrc, getName, getTerm } from "./parsers.js";
+import { write } from "./write.js";
 
 async function main() {
   try {
@@ -38,7 +39,7 @@ async function main() {
       };
     });
 
-    console.log(data);
+    write(JSON.stringify(data, null, 2));
   } catch (e) {
     console.log("----------");
     console.log(e);
