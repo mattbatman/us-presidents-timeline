@@ -8,9 +8,11 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "scrape": "node scripts/main.js",
-    "test": "vitest"
+    "test": "vitest",
+    "prettier": "prettier --write '{src,scripts}/**/*.{js,jsx,ts,tsx,json,css}'"
   },
   "devDependencies": {
+    "prettier": "3.3.3",
     "typescript": "^5.2.2",
     "vite": "^5.3.4",
     "vitest": "^2.0.5"
