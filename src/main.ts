@@ -1,7 +1,9 @@
 import "./style.css";
+import presidents from "./presidents.json";
+import { draw } from "./timeline";
 
 function main() {
-  console.log("Hello world");
+  draw({ data: presidents, selector: "#timeline" });
 }
 
 main();
