@@ -2,8 +2,8 @@ import * as d3 from "d3";
 import { President } from "./types";
 
 function draw({ data, selector }: { data: President[]; selector: string }) {
-  const minYear = d3.min(data, (d) => d.startTerm);
-  const maxYear = d3.max(data, (d) => d.endTerm);
+  const minYear = d3.min(data, (d) => d.startTerm) ?? new Date(1776, 6, 4);
+  const maxYear = d3.max(data, (d) => d.endTerm) ?? new Date();
 
   const containerHeight = parseInt(d3.select(selector).style("height"));
   const containerWidth = parseInt(d3.select(selector).style("width"));
@@ -19,18 +19,11 @@ function draw({ data, selector }: { data: President[]; selector: string }) {
 
   const height = containerHeight - margin.top - margin.bottom;
 
-  const plotArea = {
-    x: margin.left,
-    y: margin.top,
-    width,
-    height,
-  };
-
   // create the skeleton of the chart
   const svg = d3
     .select(selector)
     .append("svg")
-    .attr("width", "100%") // TODO: width conflict
+    .attr("width", "100%")
     .attr("height", containerHeight)
     .append("g")
     .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
@@ -41,28 +34,27 @@ function draw({ data, selector }: { data: President[]; selector: string }) {
     .attr("class", "x axis")
     .attr("transform", `translate(0, ${height})`);
 
+  // style x-axis tick labels
   svg
     .select(".x.axis")
     .selectAll("text")
     .attr("transform", "rotate(0)")
     .style("text-anchor", "middle");
 
+  // set x scale
   const x = d3.scaleTime();
+  // set place axis on chart
   const xAxis: any = d3.axisBottom(x);
 
-  console.log(minYear, "   ", maxYear);
+  // domain -> values in data
+  // range -> location in chart
   x.domain([minYear, maxYear]).range([0, width]);
 
-  // xAxis.tickValues(x.domain().filter(filterTimeTicksOnlyYear))
-
+  // sets the scale and returns the axis
   xAxis.scale(x);
 
-  // call the axes
+  // write the x-axis to the chart
   svg.select(".x.axis").call(xAxis);
 }
-
-// function filterTimeTicksOnlyYear(d, i, a) {
-//   return i % 5 === 0;
-// }
 
 export { draw };
