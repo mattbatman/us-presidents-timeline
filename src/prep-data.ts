@@ -1,20 +1,5 @@
 import { timeParser } from "./parse-time";
-
-interface JSONData {
-  number: string;
-  portrait: string;
-  name: string;
-  startTerm: string;
-  endTerm: string;
-}
-
-interface President {
-  number: string;
-  portrait: string;
-  name: string;
-  startTerm: Date | null;
-  endTerm: Date | null;
-}
+import { JSONData, President } from "./types";
 
 function prepData(raw: JSONData[]): President[] {
   return raw.map(function (rawPresident) {
