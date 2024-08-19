@@ -39,7 +39,7 @@ async function main() {
           name,
           startTerm,
           endTerm,
-          partyColor 
+          partyColor,
         };
       })
       .filter(function (data) {

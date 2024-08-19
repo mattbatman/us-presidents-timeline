@@ -70,12 +70,12 @@ describe("parsers", () => {
     });
   });
 
-  describe('getPartyColor', () => { 
-    it('should return the background color of the node', ({ expect }) => {
+  describe("getPartyColor", () => {
+    it("should return the background color of the node", ({ expect }) => {
       td.style.backgroundColor = "#000000";
       const actual = getPartyColor(td);
 
       expect(actual).toBe("#000000");
     });
-  })
+  });
 });
