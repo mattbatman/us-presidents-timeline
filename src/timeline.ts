@@ -60,25 +60,24 @@ function draw({ data, selector }: { data: President[]; selector: string }) {
   const presidentRadius = 13;
   const presidentBackground = svg
     .append("g")
-    .attr("class", "markers")
+    .attr("class", "party-background")
     .selectAll("circle")
     .data(data)
     .join("circle")
-    .attr("aria-hidden", "true")
     .attr("fill", (d: any) => "#ff0000")
-    .attr("cx", (d: any) => x(d.startTerm))
-    .attr("cy", 0)
+    .attr("cx", (d: any) => x(d.startTerm) + presidentRadius)
+    .attr("cy", presidentRadius)
     .attr("r", presidentRadius + 2);
 
   // mark presidents
   const presidents = svg
     .append("g")
-    .attr("class", "markers")
+    .attr("class", "presidents")
     .selectAll("image")
     .data(data)
     .join("image")
-    .attr("transform", (d: any) => `translate(${x(d.startTerm)}, 0)`)
-    .attr("aria-hidden", "true")
+    .attr("x", (d: any) => x(d.startTerm))
+    .attr("y", 0)
     .attr("href", (d: any) => d.portrait)
     .attr("width", presidentRadius * 2)
     .attr("height", presidentRadius * 2)
