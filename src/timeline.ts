@@ -55,6 +55,34 @@ function draw({ data, selector }: { data: President[]; selector: string }) {
 
   // write the x-axis to the chart
   svg.select(".x.axis").call(xAxis);
+
+  // mark presidents background
+  const presidentRadius = 13;
+  const presidentBackground = svg
+    .append("g")
+    .attr("class", "markers")
+    .selectAll("circle")
+    .data(data)
+    .join("circle")
+    .attr("aria-hidden", "true")
+    .attr("fill", (d: any) => "#ff0000")
+    .attr("cx", (d: any) => x(d.startTerm))
+    .attr("cy", 0)
+    .attr("r", presidentRadius + 2);
+
+  // mark presidents
+  const presidents = svg
+    .append("g")
+    .attr("class", "markers")
+    .selectAll("image")
+    .data(data)
+    .join("image")
+    .attr("transform", (d: any) => `translate(${x(d.startTerm)}, 0)`)
+    .attr("aria-hidden", "true")
+    .attr("href", (d: any) => d.portrait)
+    .attr("width", presidentRadius * 2)
+    .attr("height", presidentRadius * 2)
+    .attr("clip-path", `circle(${presidentRadius}px)`);
 }
 
 export { draw };
