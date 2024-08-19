@@ -1,5 +1,5 @@
 import { getDocument } from "./get-document.js";
-import { getPortraitSrc, getName, getTerm } from "./parsers.js";
+import { getPortraitSrc, getName, getTerm, getPartyColor } from "./parsers.js";
 import { write } from "./write.js";
 
 async function main() {
@@ -22,7 +22,8 @@ async function main() {
           portraitNode,
           nameBirthDeathNode,
           termNode,
-          partyNode,
+          partyColorNode,
+          partyNameNode,
           electionNode,
           vpNode,
         ] = datum;
@@ -30,6 +31,7 @@ async function main() {
         const portrait = getPortraitSrc(portraitNode);
         const name = getName(nameBirthDeathNode);
         const { startTerm, endTerm } = getTerm(termNode);
+        const partyColor = getPartyColor(partyColorNode);
 
         return {
           number: th.textContent.trim(),
@@ -37,6 +39,7 @@ async function main() {
           name,
           startTerm,
           endTerm,
+          partyColor 
         };
       })
       .filter(function (data) {

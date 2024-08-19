@@ -18,4 +18,8 @@ function getTerm(node) {
   return { startTerm, endTerm };
 }
 
-export { getPortraitSrc, getName, getTerm };
+function getPartyColor(node) {
+  return node.style.backgroundColor;
+}
+
+export { getPortraitSrc, getName, getTerm, getPartyColor };

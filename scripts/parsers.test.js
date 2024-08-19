@@ -1,6 +1,6 @@
 import { describe, it, beforeEach, afterEach } from "vitest";
 import { Window } from "happy-dom";
-import { getPortraitSrc, getName, getTerm } from "./parsers.js";
+import { getPortraitSrc, getName, getTerm, getPartyColor } from "./parsers.js";
 
 describe("parsers", () => {
   let window = null;
@@ -69,4 +69,13 @@ describe("parsers", () => {
       expect(actual).toEqual(expected);
     });
   });
+
+  describe('getPartyColor', () => { 
+    it('should return the background color of the node', ({ expect }) => {
+      td.style.backgroundColor = "#000000";
+      const actual = getPartyColor(td);
+
+      expect(actual).toBe("#000000");
+    });
+  })
 });
