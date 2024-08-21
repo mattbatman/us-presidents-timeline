@@ -64,7 +64,7 @@ function draw({ data, selector }: { data: President[]; selector: string }) {
     .selectAll("circle")
     .data(data)
     .join("circle")
-    .attr("fill", (d: any) => "#ff0000")
+    .attr("fill", (d: any) => d.partyColor)
     .attr("cx", (d: any) => x(d.startTerm) + presidentRadius)
     .attr("cy", presidentRadius)
     .attr("r", presidentRadius + 2);

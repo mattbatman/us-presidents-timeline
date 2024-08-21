@@ -7,6 +7,7 @@ function prepData(raw: JSONData[]): President[] {
       number: rawPresident.number,
       portrait: rawPresident.portrait,
       name: rawPresident.name,
+      partyColor: rawPresident.partyColor,
       startTerm: timeParser(rawPresident.startTerm),
       endTerm: timeParser(rawPresident.endTerm),
     };
