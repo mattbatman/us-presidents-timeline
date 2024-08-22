@@ -94,8 +94,3 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
-#timeline {
-  height: 400px;
-  width: 100%;
-}

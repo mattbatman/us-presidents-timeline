@@ -6,21 +6,19 @@ function draw({ data, selector }: { data: President[]; selector: string }) {
   const minYear = d3.min(data, (d) => d.startTerm) ?? new Date(1776, 6, 4);
   const maxYear = d3.max(data, (d) => d.endTerm) ?? new Date();
 
-  const presidentRadius = 13;
+  const presidentRadius = 16;
 
-  const containerHeight = parseInt(d3.select(selector).style("height"));
-  const containerWidth = parseInt(d3.select(selector).style("width"));
+  const height = data.length * 100;
 
   const timelineConfig = {
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 10,
-    marginBottom: 50,
-    width: containerWidth,
-    height: containerHeight,
-    x: {
+    marginLeft: 48,
+    marginRight: 16,
+    marginTop: 16,
+    marginBottom: 16,
+    height,
+    y: {
       type: "time",
-      domain: [minYear, maxYear],
+      domain: [maxYear, minYear],
       //     label: "Year",
       //      tickFormat: d3.format("d"),
       tickSize: 0,
@@ -28,13 +26,13 @@ function draw({ data, selector }: { data: President[]; selector: string }) {
     },
     marks: [
       Plot.dot(data, {
-        x: ({ startTerm }) => startTerm,
+        y: ({ startTerm }) => startTerm,
         r: presidentRadius + 1,
         fill: ({ partyColor }) => partyColor,
         strokeWidth: 2,
       }),
       Plot.image(data, {
-        x: ({ startTerm }) => startTerm,
+        y: ({ startTerm }) => startTerm,
         src: ({ portrait }) => portrait,
         r: presidentRadius,
       }),
