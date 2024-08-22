@@ -1,0 +1,466 @@
+[
+  {
+    "number": "1",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/150px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg",
+    "name": "George Washington",
+    "startTerm": "April 30, 1789",
+    "endTerm": "March 4, 1797",
+    "partyColors": [
+      "#DCDCDC"
+    ]
+  },
+  {
+    "number": "2",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/0/07/John_Adams_A18236.jpg/150px-John_Adams_A18236.jpg",
+    "name": "John Adams",
+    "startTerm": "March 4, 1797",
+    "endTerm": "March 4, 1801",
+    "partyColors": [
+      "#EA9978"
+    ]
+  },
+  {
+    "number": "3",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg/150px-Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg",
+    "name": "Thomas Jefferson",
+    "startTerm": "March 4, 1801",
+    "endTerm": "March 4, 1809",
+    "partyColors": [
+      "#008000"
+    ]
+  },
+  {
+    "number": "4",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/1/1d/James_Madison.jpg/150px-James_Madison.jpg",
+    "name": "James Madison",
+    "startTerm": "March 4, 1809",
+    "endTerm": "March 4, 1817",
+    "partyColors": [
+      "#008000"
+    ]
+  },
+  {
+    "number": "5",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/d/d4/James_Monroe_White_House_portrait_1819.jpg/150px-James_Monroe_White_House_portrait_1819.jpg",
+    "name": "James Monroe",
+    "startTerm": "March 4, 1817",
+    "endTerm": "March 4, 1825",
+    "partyColors": [
+      "#008000"
+    ]
+  },
+  {
+    "number": "6",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/e/e8/JQA_Photo_Crop.jpg/150px-JQA_Photo_Crop.jpg",
+    "name": "John Quincy Adams",
+    "startTerm": "March 4, 1825",
+    "endTerm": "March 4, 1829",
+    "partyColors": [
+      "#008000",
+      "#FFE6B0"
+    ]
+  },
+  {
+    "number": "7",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/4/43/Andrew_jackson_head.jpg/150px-Andrew_jackson_head.jpg",
+    "name": "Andrew Jackson",
+    "startTerm": "March 4, 1829",
+    "endTerm": "March 4, 1837",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "8",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Martin_Van_Buren.jpg/150px-Martin_Van_Buren.jpg",
+    "name": "Martin Van Buren",
+    "startTerm": "March 4, 1837",
+    "endTerm": "March 4, 1841",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "9",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/3/34/William_Henry_Harrison_by_James_Reid_Lambdin%2C_1835_crop.jpg/150px-William_Henry_Harrison_by_James_Reid_Lambdin%2C_1835_crop.jpg",
+    "name": "William Henry Harrison",
+    "startTerm": "March 4, 1841",
+    "endTerm": "April 4, 1841",
+    "partyColors": [
+      "#F0C862"
+    ]
+  },
+  {
+    "number": "10",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/6/6e/John_Tyler_%28cropped_3x4%29_%28cropped%29%282%29.png/150px-John_Tyler_%28cropped_3x4%29_%28cropped%29%282%29.png",
+    "name": "John Tyler",
+    "startTerm": "April 4, 1841",
+    "endTerm": "March 4, 1845",
+    "partyColors": [
+      "#F0C862",
+      "#DCDCDC"
+    ]
+  },
+  {
+    "number": "11",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/8/87/Polk_crop.jpg/150px-Polk_crop.jpg",
+    "name": "James K. Polk",
+    "startTerm": "March 4, 1845",
+    "endTerm": "March 4, 1849",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "12",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/5/51/Zachary_Taylor_restored_and_cropped.jpg/150px-Zachary_Taylor_restored_and_cropped.jpg",
+    "name": "Zachary Taylor",
+    "startTerm": "March 4, 1849",
+    "endTerm": "July 9, 1850",
+    "partyColors": [
+      "#F0C862"
+    ]
+  },
+  {
+    "number": "13",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Fillmore.jpg/150px-Fillmore.jpg",
+    "name": "Millard Fillmore",
+    "startTerm": "July 9, 1850",
+    "endTerm": "March 4, 1853",
+    "partyColors": [
+      "#F0C862"
+    ]
+  },
+  {
+    "number": "14",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Mathew_Brady_-_Franklin_Pierce_-_alternate_crop_%28cropped%29%28b%29%283%29.jpg/150px-Mathew_Brady_-_Franklin_Pierce_-_alternate_crop_%28cropped%29%28b%29%283%29.jpg",
+    "name": "Franklin Pierce",
+    "startTerm": "March 4, 1853",
+    "endTerm": "March 4, 1857",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "15",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/f/fd/James_Buchanan.jpg/150px-James_Buchanan.jpg",
+    "name": "James Buchanan",
+    "startTerm": "March 4, 1857",
+    "endTerm": "March 4, 1861",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "16",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Abraham_Lincoln_O-77_matte_collodion_print.jpg/150px-Abraham_Lincoln_O-77_matte_collodion_print.jpg",
+    "name": "Abraham Lincoln",
+    "startTerm": "March 4, 1861",
+    "endTerm": "April 15, 1865",
+    "partyColors": [
+      "#E81B23",
+      "#B22222"
+    ]
+  },
+  {
+    "number": "17",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Andrew_Johnson_photo_portrait_head_and_shoulders%2C_c1870-1880-Edit1.jpg/150px-Andrew_Johnson_photo_portrait_head_and_shoulders%2C_c1870-1880-Edit1.jpg",
+    "name": "Andrew Johnson",
+    "startTerm": "April 15, 1865",
+    "endTerm": "March 4, 1869",
+    "partyColors": [
+      "#B22222",
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "18",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/7/75/Ulysses_S_Grant_by_Brady_c1870-restored.jpg/150px-Ulysses_S_Grant_by_Brady_c1870-restored.jpg",
+    "name": "Ulysses S. Grant",
+    "startTerm": "March 4, 1869",
+    "endTerm": "March 4, 1877",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "19",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/5/50/President_Rutherford_Hayes_1870_-_1880_Restored.jpg/150px-President_Rutherford_Hayes_1870_-_1880_Restored.jpg",
+    "name": "Rutherford B. Hayes",
+    "startTerm": "March 4, 1877",
+    "endTerm": "March 4, 1881",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "20",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/1/1f/James_Abram_Garfield%2C_photo_portrait_seated.jpg/150px-James_Abram_Garfield%2C_photo_portrait_seated.jpg",
+    "name": "James A. Garfield",
+    "startTerm": "March 4, 1881",
+    "endTerm": "September 19, 1881",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "21",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/4/49/Chester_A._Arthur_by_Abraham_Bogardus_%28cropped%29.jpg/150px-Chester_A._Arthur_by_Abraham_Bogardus_%28cropped%29.jpg",
+    "name": "Chester A. Arthur",
+    "startTerm": "September 19, 1881",
+    "endTerm": "March 4, 1885",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "22",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/3/36/StephenGroverCleveland.jpg/150px-StephenGroverCleveland.jpg",
+    "name": "Grover Cleveland",
+    "startTerm": "March 4, 1885",
+    "endTerm": "March 4, 1889",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "23",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Benjamin_Harrison%2C_head_and_shoulders_bw_photo%2C_1896.jpg/150px-Benjamin_Harrison%2C_head_and_shoulders_bw_photo%2C_1896.jpg",
+    "name": "Benjamin Harrison",
+    "startTerm": "March 4, 1889",
+    "endTerm": "March 4, 1893",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "24",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/3/36/StephenGroverCleveland.jpg/150px-StephenGroverCleveland.jpg",
+    "name": "Grover Cleveland",
+    "startTerm": "March 4, 1893",
+    "endTerm": "March 4, 1897",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "25",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Mckinley.jpg/150px-Mckinley.jpg",
+    "name": "William McKinley",
+    "startTerm": "March 4, 1897",
+    "endTerm": "September 14, 1901",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "26",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Theodore_Roosevelt_by_the_Pach_Bros.jpg/150px-Theodore_Roosevelt_by_the_Pach_Bros.jpg",
+    "name": "Theodore Roosevelt",
+    "startTerm": "September 14, 1901",
+    "endTerm": "March 4, 1909",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "27",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Cabinet_card_of_William_Howard_Taft_by_Pach_Brothers_-_Cropped_to_image.jpg/150px-Cabinet_card_of_William_Howard_Taft_by_Pach_Brothers_-_Cropped_to_image.jpg",
+    "name": "William Howard Taft",
+    "startTerm": "March 4, 1909",
+    "endTerm": "March 4, 1913",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "28",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Thomas_Woodrow_Wilson%2C_Harris_%26_Ewing_bw_photo_portrait%2C_1919_-_black_and_white_%28cropped%29.jpg/150px-Thomas_Woodrow_Wilson%2C_Harris_%26_Ewing_bw_photo_portrait%2C_1919_-_black_and_white_%28cropped%29.jpg",
+    "name": "Woodrow Wilson",
+    "startTerm": "March 4, 1913",
+    "endTerm": "March 4, 1921",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "29",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Warren_G_Harding-Harris_%26_Ewing.jpg/150px-Warren_G_Harding-Harris_%26_Ewing.jpg",
+    "name": "Warren G. Harding",
+    "startTerm": "March 4, 1921",
+    "endTerm": "August 2, 1923",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "30",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Calvin_Coolidge_cph.3g10777_%28cropped%29.jpg/150px-Calvin_Coolidge_cph.3g10777_%28cropped%29.jpg",
+    "name": "Calvin Coolidge",
+    "startTerm": "August 2, 1923",
+    "endTerm": "March 4, 1929",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "31",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/5/57/President_Hoover_portrait.jpg/150px-President_Hoover_portrait.jpg",
+    "name": "Herbert Hoover",
+    "startTerm": "March 4, 1929",
+    "endTerm": "March 4, 1933",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "32",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/6/6f/FDR-1944-Campaign-Portrait_%28cropped%29.jpg/150px-FDR-1944-Campaign-Portrait_%28cropped%29.jpg",
+    "name": "Franklin D. Roosevelt",
+    "startTerm": "March 4, 1933",
+    "endTerm": "April 12, 1945",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "33",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/0/0b/TRUMAN_58-766-06_%28cropped%29.jpg/150px-TRUMAN_58-766-06_%28cropped%29.jpg",
+    "name": "Harry S. Truman",
+    "startTerm": "April 12, 1945",
+    "endTerm": "January 20, 1953",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "34",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/0/02/Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959_%28cropped%29%283%29.jpg/150px-Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959_%28cropped%29%283%29.jpg",
+    "name": "Dwight D. Eisenhower",
+    "startTerm": "January 20, 1953",
+    "endTerm": "January 20, 1961",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "35",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/c/c3/John_F._Kennedy%2C_White_House_color_photo_portrait.jpg/150px-John_F._Kennedy%2C_White_House_color_photo_portrait.jpg",
+    "name": "John F. Kennedy",
+    "startTerm": "January 20, 1961",
+    "endTerm": "November 22, 1963",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "36",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/c/c3/37_Lyndon_Johnson_3x4.jpg/150px-37_Lyndon_Johnson_3x4.jpg",
+    "name": "Lyndon B. Johnson",
+    "startTerm": "November 22, 1963",
+    "endTerm": "January 20, 1969",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "37",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Richard_Nixon_presidential_portrait_%281%29.jpg/150px-Richard_Nixon_presidential_portrait_%281%29.jpg",
+    "name": "Richard Nixon",
+    "startTerm": "January 20, 1969",
+    "endTerm": "August 9, 1974",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "38",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/4/44/Gerald_Ford_presidential_portrait_%28cropped_3%29.jpg/150px-Gerald_Ford_presidential_portrait_%28cropped_3%29.jpg",
+    "name": "Gerald Ford",
+    "startTerm": "August 9, 1974",
+    "endTerm": "January 20, 1977",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "39",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/5/5a/JimmyCarterPortrait2.jpg/150px-JimmyCarterPortrait2.jpg",
+    "name": "Jimmy Carter",
+    "startTerm": "January 20, 1977",
+    "endTerm": "January 20, 1981",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "40",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/1/16/Official_Portrait_of_President_Reagan_1981.jpg/150px-Official_Portrait_of_President_Reagan_1981.jpg",
+    "name": "Ronald Reagan",
+    "startTerm": "January 20, 1981",
+    "endTerm": "January 20, 1989",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "41",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/e/ee/George_H._W._Bush_presidential_portrait_%28cropped%29.jpg/150px-George_H._W._Bush_presidential_portrait_%28cropped%29.jpg",
+    "name": "George H. W. Bush",
+    "startTerm": "January 20, 1989",
+    "endTerm": "January 20, 1993",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "42",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Bill_Clinton.jpg/150px-Bill_Clinton.jpg",
+    "name": "Bill Clinton",
+    "startTerm": "January 20, 1993",
+    "endTerm": "January 20, 2001",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "43",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/d/d4/George-W-Bush.jpeg/150px-George-W-Bush.jpeg",
+    "name": "George W. Bush",
+    "startTerm": "January 20, 2001",
+    "endTerm": "January 20, 2009",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "44",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/9/97/President_Barack_Obama_%28cropped%29_4.jpg/150px-President_Barack_Obama_%28cropped%29_4.jpg",
+    "name": "Barack Obama",
+    "startTerm": "January 20, 2009",
+    "endTerm": "January 20, 2017",
+    "partyColors": [
+      "#3333FF"
+    ]
+  },
+  {
+    "number": "45",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/150px-Donald_Trump_official_portrait.jpg",
+    "name": "Donald Trump",
+    "startTerm": "January 20, 2017",
+    "endTerm": "January 20, 2021",
+    "partyColors": [
+      "#E81B23"
+    ]
+  },
+  {
+    "number": "46",
+    "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/6/68/Joe_Biden_presidential_portrait.jpg/150px-Joe_Biden_presidential_portrait.jpg",
+    "name": "Joe Biden",
+    "startTerm": "January 20, 2021",
+    "endTerm": "August 22, 2024",
+    "partyColors": [
+      "#3333FF"
+    ]
+  }
+]
