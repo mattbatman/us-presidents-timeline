@@ -1,6 +1,12 @@
 import { describe, it, beforeEach, afterEach } from "vitest";
 import { Window } from "happy-dom";
-import { getPortraitSrc, getName, getTerm, getPartyColor } from "./parsers.js";
+import {
+  getPortraitSrc,
+  getName,
+  getTerm,
+  getPartyColor,
+  removeFootnoteMark,
+} from "./parsers.js";
 
 describe("parsers", () => {
   let window = null;
@@ -76,6 +82,17 @@ describe("parsers", () => {
       const actual = getPartyColor(td);
 
       expect(actual).toBe("#000000");
+    });
+  });
+
+  describe("removeFootnoteMark", () => {
+    it("should remove footnote brackets from a string", ({ expect }) => {
+      const start = "August 9, 1974[u]";
+      const expected = "August 9, 1974";
+
+      const actual = removeFootnoteMark(start);
+
+      expect(actual).toBe(expected);
     });
   });
 });

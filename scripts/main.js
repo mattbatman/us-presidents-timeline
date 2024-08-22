@@ -10,6 +10,10 @@ async function main() {
 
     const data = [...tableRows]
       .map(function (r, i) {
+        console.log('START')
+        console.log(r.innerHTML)
+        console.log('END')
+
         if (i === 0) {
           return;
         }
