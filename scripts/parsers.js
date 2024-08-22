@@ -30,12 +30,20 @@ function getCurrentDateString() {
   return currentDate;
 }
 
-function getPartyColor(node) {
-  return node.style.backgroundColor;
+function getPartyColors(node) {
+  const singleBg = node.style.backgroundColor;
+
+  if (singleBg) {
+    return [singleBg];
+  }
+
+  const hexCodes = node.outerHTML.match(/#[0-9A-Fa-f]{6}/g);
+
+  return hexCodes;
 }
 
 function removeFootnoteMark(dateString) {
   return dateString.replace(/\[\w\]/, "");
 }
 
-export { getPortraitSrc, getName, getTerm, getPartyColor, removeFootnoteMark };
+export { getPortraitSrc, getName, getTerm, removeFootnoteMark, getPartyColors };

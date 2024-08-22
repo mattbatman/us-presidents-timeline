@@ -1,5 +1,5 @@
 import { getDocument } from "./get-document.js";
-import { getPortraitSrc, getName, getTerm, getPartyColor } from "./parsers.js";
+import { getPortraitSrc, getName, getTerm, getPartyColors } from "./parsers.js";
 import { write } from "./write.js";
 
 async function main() {
@@ -10,10 +10,6 @@ async function main() {
 
     const data = [...tableRows]
       .map(function (r, i) {
-        console.log('START')
-        console.log(r.innerHTML)
-        console.log('END')
-
         if (i === 0) {
           return;
         }
@@ -35,7 +31,7 @@ async function main() {
         const portrait = getPortraitSrc(portraitNode);
         const name = getName(nameBirthDeathNode);
         const { startTerm, endTerm } = getTerm(termNode);
-        const partyColor = getPartyColor(partyColorNode);
+        const partyColors = getPartyColors(partyColorNode);
 
         return {
           number: th.textContent.trim(),
@@ -43,7 +39,7 @@ async function main() {
           name,
           startTerm,
           endTerm,
-          partyColor,
+          partyColors,
         };
       })
       .filter(function (data) {
