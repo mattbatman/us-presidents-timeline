@@ -17,8 +17,8 @@ function draw({ data, selector }: { data: President[]; selector: string }) {
   const timelineConfig = {
     marginLeft: 48,
     marginRight: 16,
-    marginTop: 16,
-    marginBottom: 16,
+    marginTop: 48,
+    marginBottom: 48,
     height,
     y: {
       type: "time",
@@ -43,6 +43,7 @@ function draw({ data, selector }: { data: President[]; selector: string }) {
       Plot.text(data, {
         y: selectStartTerm,
         text: selectName,
+        dy: presidentRadius + 8,
       }),
     ],
   };
