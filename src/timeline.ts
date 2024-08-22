@@ -32,7 +32,7 @@ function draw({ data, selector }: { data: President[]; selector: string }) {
       Plot.dot(data, {
         y: selectStartTerm,
         r: presidentRadius + 1,
-        fill: ({ partyColor }) => partyColor,
+        fill: ({ partyColors }) => partyColors[0],
         strokeWidth: 2,
       }),
       Plot.image(data, {
