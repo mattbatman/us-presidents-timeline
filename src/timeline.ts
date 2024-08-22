@@ -2,6 +2,10 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import { President } from "./types";
 
+const selectStartTerm = ({ startTerm }) => startTerm;
+const selectImg = ({ portrait }) => portrait;
+const selectName = ({ name }) => name;
+
 function draw({ data, selector }: { data: President[]; selector: string }) {
   const minYear = d3.min(data, (d) => d.startTerm) ?? new Date(1776, 6, 4);
   const maxYear = d3.max(data, (d) => d.endTerm) ?? new Date();
@@ -26,15 +30,19 @@ function draw({ data, selector }: { data: President[]; selector: string }) {
     },
     marks: [
       Plot.dot(data, {
-        y: ({ startTerm }) => startTerm,
+        y: selectStartTerm,
         r: presidentRadius + 1,
         fill: ({ partyColor }) => partyColor,
         strokeWidth: 2,
       }),
       Plot.image(data, {
-        y: ({ startTerm }) => startTerm,
-        src: ({ portrait }) => portrait,
+        y: selectStartTerm,
+        src: selectImg,
         r: presidentRadius,
+      }),
+      Plot.text(data, {
+        y: selectStartTerm,
+        text: selectName,
       }),
     ],
   };
