@@ -24,6 +24,7 @@ function draw({
   const maxYear = d3.max(presidents, (d) => d.endTerm) ?? new Date();
 
   const presidentRadius = 16;
+  const partyColorWidth = 8;
 
   const height = presidents.length * 150;
   const width = parseInt(container.style("width"));
@@ -71,8 +72,8 @@ function draw({
     .data(presidents)
     .join("circle")
     .attr("fill", ({ partyColors }) => partyColors[0])
-    .attr("cy", (d: any) => y(d.startTerm))
-    .attr("cx", presidentRadius)
+    .attr("cy", (d: any) => y(d.startTerm) + presidentRadius)
+    .attr("cx", presidentRadius + partyColorWidth + 3)
     .attr("r", presidentRadius + 1)
     .attr("stroke-width", 2);
 
@@ -83,7 +84,8 @@ function draw({
     .selectAll("image")
     .data(presidents)
     .join("image")
-    .attr("y", (d: any) => y(d.startTerm) - presidentRadius)
+    .attr("y", (d: any) => y(d.startTerm))
+    .attr("x", partyColorWidth + 3)
     .attr("href", (d: any) => d.portrait)
     .attr("width", presidentRadius * 2)
     .attr("height", presidentRadius * 2)
@@ -98,8 +100,22 @@ function draw({
     .attr("x", 0)
     .attr("y", ({ startTerm }) => y(startTerm))
     .attr("height", ({ endTerm, startTerm }) => y(endTerm) - y(startTerm))
-    .attr("width", "8px")
+    .attr("width", partyColorWidth)
     .style("fill", ({ partyColor }) => partyColor);
+
+  const meta = svg
+    .append("g")
+    .attr("class", "name")
+    .selectAll("text")
+    .data(presidents)
+    .join("text")
+    .style('font-size', '12px')
+    .attr("y", ({ startTerm }) => y(startTerm))
+    .attr('dx', partyColorWidth + 3 + (presidentRadius * 2) + 5)
+    .attr('dy', 12)
+    .attr("line-anchor", "middle")
+    .attr("text-anchor", "start")
+    .text(({ name }) => name);
 }
 
 export { draw };
