@@ -6,6 +6,7 @@ const selectStartTerm = ({ startTerm }) => startTerm;
 const selectEndTerm = ({ endTerm }) => endTerm;
 const selectImg = ({ portrait }) => portrait;
 const selectName = ({ name }) => name;
+const selectPartyColor = ({ partyColor }) => partyColor;
 
 function draw({
   presidents,
@@ -16,6 +17,8 @@ function draw({
   colors: ColorMark[];
   selector: string;
 }) {
+  const container = d3.select(selector);
+
   const minYear =
     d3.min(presidents, (d) => d.startTerm) ?? new Date(1776, 6, 4);
   const maxYear = d3.max(presidents, (d) => d.endTerm) ?? new Date();
@@ -23,55 +26,80 @@ function draw({
   const presidentRadius = 16;
 
   const height = presidents.length * 150;
+  const width = parseInt(container.style("width"));
 
-  const timelineConfig = {
-    marginLeft: 48,
-    marginRight: 16,
-    marginTop: 48,
-    marginBottom: 48,
-    height,
-    y: {
-      type: "time",
-      domain: [maxYear, minYear],
-      //     label: "Year",
-      //      tickFormat: d3.format("d"),
-      tickSize: 0,
-      paddingOuter: 1,
-    },
-    marks: [
-      Plot.barY(colors, {
-        y1: selectStartTerm,
-        y2: selectEndTerm,
-        //y0: selectEndTerm,
-        fill: ({ partyColor }) => partyColor,
-      }),
-      Plot.dot(presidents, {
-        y: selectStartTerm,
-        r: presidentRadius + 1,
-        fill: ({ partyColors }) => partyColors[0],
-        strokeWidth: 2,
-      }),
-      Plot.image(presidents, {
-        y: selectStartTerm,
-        src: selectImg,
-        r: presidentRadius,
-      }),
-      Plot.text(presidents, {
-        y: selectStartTerm,
-        text: selectName,
-        lineAnchor: "middle",
-        textAnchor: "start",
-        dx: presidentRadius + 8,
-        dy: -presidentRadius / 2,
-      }),
-    ],
+  const margin = {
+    left: 48,
+    right: 16,
+    top: 48,
+    bottom: 48,
   };
 
-  const chart = Plot.plot(timelineConfig);
+  // create the skeleton of the chart
+  const svg = container
+    .append("svg")
+    .attr("width", "100%")
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  const div = document.querySelector(selector);
+  // start placement of the y-axis
+  svg.append("g").attr("class", "y axis");
 
-  div.append(chart);
+  // style y-axis tick labels
+
+  // set y scale
+  const y = d3.scaleTime();
+  // set place axis on chart
+  const yAxis: any = d3.axisLeft(y).tickPadding(2);
+
+  // domain -> values in data
+  // range -> location in chart
+  y.domain([maxYear, minYear]).range([height, 0]);
+
+  // sets the scale and returns the axis
+  yAxis.scale(y);
+
+  // write the x-axis to the chart
+  svg.select(".y.axis").call(yAxis);
+
+  // mark presidents background
+  const presidentBackground = svg
+    .append("g")
+    .attr("class", "party-background")
+    .selectAll("circle")
+    .data(presidents)
+    .join("circle")
+    .attr("fill", ({ partyColors }) => partyColors[0])
+    .attr("cy", (d: any) => y(d.startTerm))
+    .attr("cx", presidentRadius)
+    .attr("r", presidentRadius + 1)
+    .attr("stroke-width", 2);
+
+  // mark presidents
+  const portraits = svg
+    .append("g")
+    .attr("class", "portraits")
+    .selectAll("image")
+    .data(presidents)
+    .join("image")
+    .attr("y", (d: any) => y(d.startTerm) - presidentRadius)
+    .attr("href", (d: any) => d.portrait)
+    .attr("width", presidentRadius * 2)
+    .attr("height", presidentRadius * 2)
+    .attr("clip-path", `circle(${presidentRadius}px)`);
+
+  const partyColors = svg
+    .append("g")
+    .attr("class", "party-colors")
+    .selectAll("rect")
+    .data(colors)
+    .join("rect")
+    .attr("x", 0)
+    .attr("y", ({ startTerm }) => y(startTerm))
+    .attr("height", ({ endTerm, startTerm }) => y(endTerm) - y(startTerm))
+    .attr("width", "8px")
+    .style("fill", ({ partyColor }) => partyColor);
 }
 
 export { draw };
