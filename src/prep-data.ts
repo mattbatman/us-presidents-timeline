@@ -1,5 +1,5 @@
 import { timeParser } from "./parse-time";
-import { JSONData, President } from "./types";
+import { JSONData, President, ColorMark } from "./types";
 
 function prepData(raw: JSONData[]): President[] {
   return raw.map(function (rawPresident) {
@@ -14,4 +14,47 @@ function prepData(raw: JSONData[]): President[] {
   });
 }
 
-export { prepData };
+function isolateColors(data: President[]): ColorMark[] {
+  return data
+    .map(function (president) {
+      const { number, portrait, name, startTerm, endTerm, partyColors } =
+        president;
+
+      if (partyColors.length > 2) {
+        throw new Error("Unhandled number of parties found");
+      }
+
+      if (partyColors.length === 1) {
+        return {
+          number,
+          portrait,
+          name,
+          startTerm,
+          endTerm,
+          partyColor: partyColors[0],
+        };
+      }
+
+      return handleTwoParties(president);
+    })
+    .flat();
+}
+
+function handleTwoParties(president: President): ColorMark[] {
+  const { number, portrait, name, startTerm, endTerm, partyColors } = president;
+
+  const midTerm = new Date((startTerm.getTime() + endTerm.getTime()) / 2);
+
+  return partyColors.map(function (partyColor, i) {
+    return {
+      number,
+      portrait,
+      name,
+      startTerm: i === 0 ? startTerm : midTerm,
+      endTerm: i === 0 ? midTerm : endTerm,
+      partyColor,
+    };
+  });
+}
+
+export { prepData, isolateColors, handleTwoParties };
