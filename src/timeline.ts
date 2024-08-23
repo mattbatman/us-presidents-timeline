@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import { President } from "./types";
 
 const selectStartTerm = ({ startTerm }) => startTerm;
+const selectEndTerm = ({ endTerm }) => endTerm;
 const selectImg = ({ portrait }) => portrait;
 const selectName = ({ name }) => name;
 
@@ -29,6 +30,11 @@ function draw({ data, selector }: { data: President[]; selector: string }) {
       paddingOuter: 1,
     },
     marks: [
+      Plot.rectY(data, {
+        y1: selectStartTerm,
+        y0: selectEndTerm,
+        fill: ({ partyColors }) => partyColors[0],
+      }),
       Plot.dot(data, {
         y: selectStartTerm,
         r: presidentRadius + 1,
