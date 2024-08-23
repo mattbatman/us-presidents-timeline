@@ -1,5 +1,5 @@
 import { describe, it } from "vitest";
-import { prepData, isolateColors } from "./prep-data";
+import { prepData, isolateColors, getMidterm } from "./prep-data";
 import { timeParser } from "./parse-time";
 
 describe("isolateColors", () => {
@@ -25,6 +25,10 @@ describe("isolateColors", () => {
       },
     ];
 
+    const startTerm = timeParser("March 4, 1825");
+    const endTerm = timeParser("March 4, 1829");
+    const midTerm = getMidterm({ startTerm, endTerm });
+
     const expected = [
       {
         number: "5",
@@ -40,8 +44,8 @@ describe("isolateColors", () => {
         portrait:
           "//upload.wikimedia.org/wikipedia/commons/thumb/e/e8/JQA_Photo_Crop.jpg/150px-JQA_Photo_Crop.jpg",
         name: "John Quincy Adams",
-        startTerm: timeParser("March 4, 1825"),
-        endTerm: timeParser("March 4, 1829"),
+        startTerm,
+        endTerm: midTerm,
         partyColor: "#008000",
       },
       {
@@ -49,8 +53,8 @@ describe("isolateColors", () => {
         portrait:
           "//upload.wikimedia.org/wikipedia/commons/thumb/e/e8/JQA_Photo_Crop.jpg/150px-JQA_Photo_Crop.jpg",
         name: "John Quincy Adams",
-        startTerm: timeParser("March 4, 1825"),
-        endTerm: timeParser("March 4, 1829"),
+        startTerm: midTerm,
+        endTerm,
         partyColor: "#FFE6B0",
       },
     ];

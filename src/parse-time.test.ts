@@ -1,4 +1,4 @@
-import { timeParser } from "./parse-time";
+import { timeParser, timeFormatter } from "./parse-time";
 import { describe, it } from "vitest";
 
 describe("timeParser", () => {
@@ -12,3 +12,13 @@ describe("timeParser", () => {
     expect(actual?.getDate()).toBe(expected.getDate());
   });
 });
+
+describe("timeFormatter", () => {
+  it("converts a date to a string in the expected form", ({ expect }) => {
+    const start = new Date(1789, 3, 30);
+    const actual = timeFormatter(start);
+    const expected = "April 30, 1789";
+
+    expect(actual).toBe(expected);
+  });
+})

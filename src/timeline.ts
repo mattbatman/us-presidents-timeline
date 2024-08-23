@@ -1,12 +1,6 @@
-import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import { President, ColorMark } from "./types";
-
-const selectStartTerm = ({ startTerm }) => startTerm;
-const selectEndTerm = ({ endTerm }) => endTerm;
-const selectImg = ({ portrait }) => portrait;
-const selectName = ({ name }) => name;
-const selectPartyColor = ({ partyColor }) => partyColor;
+import { timeFormatter } from "./parse-time";
 
 function draw({
   presidents,
@@ -103,19 +97,42 @@ function draw({
     .attr("width", partyColorWidth)
     .style("fill", ({ partyColor }) => partyColor);
 
-  const meta = svg
-    .append("g")
+  const meta = svg.append("g").attr("class", "meta");
+  const textY = ({ startTerm }) => y(startTerm);
+  const textDx = partyColorWidth + 3 + presidentRadius * 2 + 5;
+  const textDy = 12;
+  const dyInterval = 16;
+
+  const name = meta
     .attr("class", "name")
     .selectAll("text")
     .data(presidents)
     .join("text")
-    .style('font-size', '12px')
-    .attr("y", ({ startTerm }) => y(startTerm))
-    .attr('dx', partyColorWidth + 3 + (presidentRadius * 2) + 5)
-    .attr('dy', 12)
+    .style("font-size", "12px")
+    .attr("y", textY)
+    .attr("dx", textDx)
+    .attr("dy", textDy)
     .attr("line-anchor", "middle")
     .attr("text-anchor", "start")
     .text(({ name }) => name);
+
+  const term = svg
+    .append("g")
+    .attr("class", "meta")
+    .attr("class", "term")
+    .selectAll("text")
+    .data(presidents)
+    .join("text")
+    .style("font-size", "12px")
+    .attr("y", textY)
+    .attr("dx", textDx)
+    .attr("dy", textDy + dyInterval)
+    .attr("line-anchor", "middle")
+    .attr("text-anchor", "start")
+    .text(
+      ({ startTerm, endTerm }) =>
+        `${timeFormatter(startTerm)} - ${timeFormatter(endTerm)}`
+    );
 }
 
 export { draw };

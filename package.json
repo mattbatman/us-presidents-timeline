@@ -19,7 +19,6 @@
     "vitest": "^2.0.5"
   },
   "dependencies": {
-    "@observablehq/plot": "^0.6.16",
     "d3": "^7.9.0",
     "happy-dom": "^14.12.3"
   }

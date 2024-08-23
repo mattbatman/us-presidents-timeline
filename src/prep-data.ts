@@ -43,7 +43,7 @@ function isolateColors(data: President[]): ColorMark[] {
 function handleTwoParties(president: President): ColorMark[] {
   const { number, portrait, name, startTerm, endTerm, partyColors } = president;
 
-  const midTerm = new Date((startTerm.getTime() + endTerm.getTime()) / 2);
+  const midTerm = getMidterm({ startTerm, endTerm });
 
   return partyColors.map(function (partyColor, i) {
     return {
@@ -57,4 +57,14 @@ function handleTwoParties(president: President): ColorMark[] {
   });
 }
 
-export { prepData, isolateColors, handleTwoParties };
+function getMidterm({
+  startTerm,
+  endTerm,
+}: {
+  startTerm: Date;
+  endTerm: Date;
+}): Date {
+  return new Date((startTerm.getTime() + endTerm.getTime()) / 2);
+}
+
+export { prepData, isolateColors, handleTwoParties, getMidterm };
