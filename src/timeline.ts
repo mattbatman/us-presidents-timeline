@@ -48,15 +48,55 @@ function draw({
   // set place axis on chart
   const yAxis: any = d3.axisLeft(y).tickPadding(2);
 
+  const x = d3.scaleLinear();
+  const xAxis: any = d3.axisBottom(x);
+
   // domain -> values in data
   // range -> location in chart
   y.domain([maxYear, minYear]).range([height, 0]);
+  x.domain([width / 2, (width / 2) * -1]).range([0, width]);
 
   // sets the scale and returns the axis
   yAxis.scale(y);
 
+  xAxis.scale(x);
+
   // write the x-axis to the chart
-  svg.select(".y.axis").call(yAxis);
+  svg
+    .select(".y.axis")
+    .attr("transform", "translate(" + x(0) + ",0)")
+    .call(yAxis);
+
+  svg.select(".x.axis").call(xAxis);
+
+  // line along y-axis of party colors
+  const partyColors = svg
+    .append("g")
+    .attr("class", "party-colors")
+    .selectAll("rect")
+    .data(colors)
+    .join("rect")
+    .attr("x", x(0))
+    .attr("y", ({ startTerm }) => y(startTerm))
+    .attr("height", ({ endTerm, startTerm }) => y(endTerm) - y(startTerm))
+    .attr("width", partyColorWidth)
+    .style("fill", ({ partyColor }) => partyColor);
+
+  // border from party color to president name text
+  const innerTick = svg
+    .append("g")
+    .attr("class", "inner-tick")
+    .selectAll("line")
+    .data(presidents)
+    .join("line")
+    .attr("x1", 0)
+    .attr("x2", 40)
+    .attr("y1", ({ startTerm }) => y(startTerm))
+    .attr("y2", ({ startTerm }) => y(startTerm))
+    .attr("stroke", ({ partyColors }) => partyColors[0]);
+
+  const isEven = (num: number) => num % 2 === 0;
+  const widthWithGap = partyColorWidth + 3;
 
   // mark presidents background
   const presidentBackground = svg
@@ -67,7 +107,11 @@ function draw({
     .join("circle")
     .attr("fill", ({ partyColors }) => partyColors[0])
     .attr("cy", (d: any) => y(d.startTerm) + presidentRadius)
-    .attr("cx", presidentRadius + partyColorWidth + 3)
+    .attr("cx", (d, i) =>
+      isEven(i)
+        ? presidentRadius + widthWithGap
+        : presidentRadius * 3 + widthWithGap
+    )
     .attr("r", presidentRadius + 1)
     .attr("stroke-width", 2);
 
@@ -79,28 +123,20 @@ function draw({
     .data(presidents)
     .join("image")
     .attr("y", (d: any) => y(d.startTerm))
-    .attr("x", partyColorWidth + 3)
+    .attr("x", (d, i) =>
+      isEven(i) ? widthWithGap : presidentRadius * 2 + widthWithGap
+    )
     .attr("href", (d: any) => d.portrait)
     .attr("width", presidentRadius * 2)
     .attr("height", presidentRadius * 2)
     .attr("clip-path", `circle(${presidentRadius}px)`);
 
-  // line along y-axis of party colors
-  const partyColors = svg
-    .append("g")
-    .attr("class", "party-colors")
-    .selectAll("rect")
-    .data(colors)
-    .join("rect")
-    .attr("x", 0)
-    .attr("y", ({ startTerm }) => y(startTerm))
-    .attr("height", ({ endTerm, startTerm }) => y(endTerm) - y(startTerm))
-    .attr("width", partyColorWidth)
-    .style("fill", ({ partyColor }) => partyColor);
-
   const meta = svg.append("g").attr("class", "meta");
   const textY = ({ startTerm }) => y(startTerm);
-  const textDx = partyColorWidth + 3 + presidentRadius * 2 + 5;
+  const textDx = (d, i) =>
+    isEven(i)
+      ? partyColorWidth + 3 + presidentRadius * 2 + 5
+      : widthWithGap + presidentRadius * 4 + 4;
   const textDy = 12;
   const dyInterval = 16;
 
@@ -136,19 +172,6 @@ function draw({
       ({ startTerm, endTerm }) =>
         `${timeFormatter(startTerm)} - ${timeFormatter(endTerm)}`
     );
-
-  // border from party color to president name text
-  const innerTick = svg
-    .append("g")
-    .attr("class", "inner-tick")
-    .selectAll("line")
-    .data(presidents)
-    .join("line")
-    .attr("x1", 0)
-    .attr("x2", 40)
-    .attr("y1", ({ startTerm }) => y(startTerm))
-    .attr("y2", ({ startTerm }) => y(startTerm))
-    .attr("stroke", ({ partyColors }) => partyColors[0]);
 }
 
 export { draw };
