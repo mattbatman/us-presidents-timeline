@@ -54,7 +54,7 @@ function draw({
   // domain -> values in data
   // range -> location in chart
   y.domain([maxYear, minYear]).range([height, 0]);
-  x.domain([width / 2, (width / 2) * -1]).range([0, width]);
+  x.domain([(width / 2) * -1, (width / 2)]).range([0, width]);
 
   // sets the scale and returns the axis
   yAxis.scale(y);
@@ -89,8 +89,8 @@ function draw({
     .selectAll("line")
     .data(presidents)
     .join("line")
-    .attr("x1", 0)
-    .attr("x2", 40)
+    .attr("x1", x(0))
+    .attr("x2", x(40))
     .attr("y1", ({ startTerm }) => y(startTerm))
     .attr("y2", ({ startTerm }) => y(startTerm))
     .attr("stroke", ({ partyColors }) => partyColors[0]);
@@ -109,8 +109,8 @@ function draw({
     .attr("cy", (d: any) => y(d.startTerm) + presidentRadius)
     .attr("cx", (d, i) =>
       isEven(i)
-        ? presidentRadius + widthWithGap
-        : presidentRadius * 3 + widthWithGap
+        ? x(presidentRadius + widthWithGap)
+        : x(presidentRadius * 3 + widthWithGap)
     )
     .attr("r", presidentRadius + 1)
     .attr("stroke-width", 2);
@@ -124,7 +124,7 @@ function draw({
     .join("image")
     .attr("y", (d: any) => y(d.startTerm))
     .attr("x", (d, i) =>
-      isEven(i) ? widthWithGap : presidentRadius * 2 + widthWithGap
+      isEven(i) ? x(widthWithGap) : x(presidentRadius * 2 + widthWithGap)
     )
     .attr("href", (d: any) => d.portrait)
     .attr("width", presidentRadius * 2)
