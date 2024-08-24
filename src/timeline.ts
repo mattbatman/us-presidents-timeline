@@ -54,7 +54,7 @@ function draw({
   // domain -> values in data
   // range -> location in chart
   y.domain([maxYear, minYear]).range([height, 0]);
-  x.domain([(width / 2) * -1, (width / 2)]).range([0, width]);
+  x.domain([(width / 2) * -1, width / 2]).range([0, width]);
 
   // sets the scale and returns the axis
   yAxis.scale(y);
@@ -110,7 +110,7 @@ function draw({
     .attr("cx", (d, i) =>
       isEven(i)
         ? x(presidentRadius + widthWithGap)
-        : x(presidentRadius * 3 + widthWithGap)
+        : x((presidentRadius + widthWithGap) * -1)
     )
     .attr("r", presidentRadius + 1)
     .attr("stroke-width", 2);
@@ -124,7 +124,7 @@ function draw({
     .join("image")
     .attr("y", (d: any) => y(d.startTerm))
     .attr("x", (d, i) =>
-      isEven(i) ? x(widthWithGap) : x(presidentRadius * 2 + widthWithGap)
+      isEven(i) ? x(widthWithGap) : x(widthWithGap * -1 - (presidentRadius * 2))
     )
     .attr("href", (d: any) => d.portrait)
     .attr("width", presidentRadius * 2)
