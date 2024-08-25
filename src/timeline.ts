@@ -88,23 +88,6 @@ function draw({
 
   const widthWithGap = partyColorWidth + 3;
 
-  // border from party color to president name text
-  const innerTick = svg
-    .append("g")
-    .attr("class", "inner-tick")
-    .selectAll("line")
-    .data(presidents)
-    .join("line")
-    .attr("x1", x(0))
-    .attr("x2", (d, i) =>
-      isEven(i)
-        ? x(widthWithGap + presidentRadius * 2)
-        : x(-widthWithGap - 3 - presidentRadius * 2)
-    )
-    .attr("y1", ({ startTerm }) => y(startTerm))
-    .attr("y2", ({ startTerm }) => y(startTerm))
-    .attr("stroke", ({ partyColors }) => partyColors[0]);
-
   // mark presidents background
   const presidentBackground = svg
     .append("g")
@@ -161,7 +144,8 @@ function draw({
     .attr("dy", textDy)
     .attr("line-anchor", "middle")
     .attr("text-anchor", textAnchor)
-    .text(({ name }) => name);
+    .text(({ name }) => name)
+    .style("border-top", ({ partyColors }) => `1px solid ${partyColors[0]}`);
 
   // term of the president text
   const term = svg
@@ -181,6 +165,23 @@ function draw({
       ({ startTerm, endTerm }) =>
         `${timeFormatter(startTerm)} - ${timeFormatter(endTerm)}`
     );
+
+  // border from party color to president name text
+  const innerTick = svg
+    .append("g")
+    .attr("class", "inner-tick")
+    .selectAll("line")
+    .data(presidents)
+    .join("line")
+    .attr("x1", x(0))
+    .attr("x2", (d, i) =>
+      isEven(i)
+        ? x(widthWithGap + presidentRadius)
+        : x(-widthWithGap - 3 - presidentRadius)
+    )
+    .attr("y1", ({ startTerm }) => y(startTerm))
+    .attr("y2", ({ startTerm }) => y(startTerm))
+    .attr("stroke", ({ partyColors }) => partyColors[0]);
 }
 
 export { draw };
