@@ -2,6 +2,10 @@ import * as d3 from "d3";
 import { President, ColorMark } from "./types";
 import { timeFormatter } from "./parse-time";
 
+function isEven(num: number) {
+  return num % 2 === 0;
+}
+
 function draw({
   presidents,
   colors,
@@ -82,6 +86,8 @@ function draw({
     .attr("width", partyColorWidth)
     .style("fill", ({ partyColor }) => partyColor);
 
+  const widthWithGap = partyColorWidth + 3;
+
   // border from party color to president name text
   const innerTick = svg
     .append("g")
@@ -90,13 +96,14 @@ function draw({
     .data(presidents)
     .join("line")
     .attr("x1", x(0))
-    .attr("x2", x(40))
+    .attr("x2", (d, i) =>
+      isEven(i)
+        ? x(widthWithGap + presidentRadius * 2)
+        : x(-widthWithGap - 3 - presidentRadius * 2)
+    )
     .attr("y1", ({ startTerm }) => y(startTerm))
     .attr("y2", ({ startTerm }) => y(startTerm))
     .attr("stroke", ({ partyColors }) => partyColors[0]);
-
-  const isEven = (num: number) => num % 2 === 0;
-  const widthWithGap = partyColorWidth + 3;
 
   // mark presidents background
   const presidentBackground = svg
@@ -124,14 +131,13 @@ function draw({
     .join("image")
     .attr("y", (d: any) => y(d.startTerm))
     .attr("x", (d, i) =>
-      isEven(i) ? x(widthWithGap) : x(widthWithGap * -1 - (presidentRadius * 2))
+      isEven(i) ? x(widthWithGap) : x(widthWithGap * -1 - presidentRadius * 2)
     )
     .attr("href", (d: any) => d.portrait)
     .attr("width", presidentRadius * 2)
     .attr("height", presidentRadius * 2)
     .attr("clip-path", `circle(${presidentRadius}px)`);
 
-  const meta = svg.append("g").attr("class", "meta");
   const textY = ({ startTerm }) => y(startTerm);
   const textDx = (d, i) =>
     isEven(i)
@@ -139,6 +145,8 @@ function draw({
       : widthWithGap + presidentRadius * 4 + 4;
   const textDy = 12;
   const dyInterval = 16;
+
+  const meta = svg.append("g").attr("class", "meta");
 
   // name of the president text
   const name = meta
