@@ -141,10 +141,11 @@ function draw({
   const textY = ({ startTerm }) => y(startTerm);
   const textDx = (d, i) =>
     isEven(i)
-      ? partyColorWidth + 3 + presidentRadius * 2 + 5
-      : widthWithGap + presidentRadius * 4 + 4;
+      ? x(partyColorWidth + 3 + presidentRadius * 2 + 5)
+      : x(-widthWithGap - presidentRadius * 2 - 4);
   const textDy = 12;
   const dyInterval = 16;
+  const textAnchor = (d, i) => (isEven(i) ? "start" : "end");
 
   const meta = svg.append("g").attr("class", "meta");
 
@@ -159,7 +160,7 @@ function draw({
     .attr("dx", textDx)
     .attr("dy", textDy)
     .attr("line-anchor", "middle")
-    .attr("text-anchor", "start")
+    .attr("text-anchor", textAnchor)
     .text(({ name }) => name);
 
   // term of the president text
@@ -175,7 +176,7 @@ function draw({
     .attr("dx", textDx)
     .attr("dy", textDy + dyInterval)
     .attr("line-anchor", "middle")
-    .attr("text-anchor", "start")
+    .attr("text-anchor", textAnchor)
     .text(
       ({ startTerm, endTerm }) =>
         `${timeFormatter(startTerm)} - ${timeFormatter(endTerm)}`
