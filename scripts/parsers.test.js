@@ -7,12 +7,14 @@ import {
   getPartyColor,
   getPartyColors,
   removeFootnoteMark,
+  getPartyNames,
 } from "./parsers.js";
 
 describe("parsers", () => {
   let window = null;
   let document = null;
   let td = null;
+  let tr = null;
 
   beforeEach(() => {
     window = new Window();
@@ -115,6 +117,34 @@ describe("parsers", () => {
       const actual = removeFootnoteMark(start);
 
       expect(actual).toBe(expected);
+    });
+  });
+
+  describe("getPartyNames", () => {
+    it("should return the affiliated party names", ({ expect }) => {
+      td.innerHTML = `
+          <a href="/wiki/Republican_Party_(United_States)" title="Republican Party (United States)">Republican</a>
+          <hr> 
+          <a href="/wiki/National_Union_Party_(United_States)" title="National Union Party (United States)">National Union</a><sup id="cite_ref-ALincoln_53-0" class="reference"><a href="#cite_note-ALincoln-53"><span class="cite-bracket">[</span>l<span class="cite-bracket">]</span></a></sup>
+      `;
+
+      const actual = getPartyNames(td);
+
+      const expected = ["Republican", "National Union"];
+
+      expect(actual).toEqual(expected);
+    });
+
+    it("should return the affiliated party names", ({ expect }) => {
+      td.innerHTML = `
+        <a href="/wiki/Democratic-Republican_Party" title="Democratic-Republican Party">Democratic-<br>Republican</a><sup id="cite_ref-JQAdams_32-0" class="reference"><a href="#cite_note-JQAdams-32"><span class="cite-bracket">[</span>f<span class="cite-bracket">]</span></a></sup> <hr> <a href="/wiki/National_Republican_Party" title="National Republican Party">National Republican</a>
+      `;
+
+      const actual = getPartyNames(td);
+
+      const expected = ["Democratic-Republican", "National Republican"];
+
+      expect(actual).toEqual(expected);
     });
   });
 });

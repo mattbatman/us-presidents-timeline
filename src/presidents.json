@@ -7,6 +7,9 @@
     "endTerm": "March 4, 1797",
     "partyColors": [
       "#DCDCDC"
+    ],
+    "partyNames": [
+      "Unaffiliated"
     ]
   },
   {
@@ -17,6 +20,9 @@
     "endTerm": "March 4, 1801",
     "partyColors": [
       "#EA9978"
+    ],
+    "partyNames": [
+      "Federalist"
     ]
   },
   {
@@ -27,6 +33,9 @@
     "endTerm": "March 4, 1809",
     "partyColors": [
       "#008000"
+    ],
+    "partyNames": [
+      "Democratic-Republican"
     ]
   },
   {
@@ -37,6 +46,9 @@
     "endTerm": "March 4, 1817",
     "partyColors": [
       "#008000"
+    ],
+    "partyNames": [
+      "Democratic-Republican"
     ]
   },
   {
@@ -47,6 +59,9 @@
     "endTerm": "March 4, 1825",
     "partyColors": [
       "#008000"
+    ],
+    "partyNames": [
+      "Democratic-Republican"
     ]
   },
   {
@@ -58,6 +73,10 @@
     "partyColors": [
       "#008000",
       "#FFE6B0"
+    ],
+    "partyNames": [
+      "Democratic-Republican",
+      "National Republican"
     ]
   },
   {
@@ -68,6 +87,9 @@
     "endTerm": "March 4, 1837",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -78,6 +100,9 @@
     "endTerm": "March 4, 1841",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -88,6 +113,9 @@
     "endTerm": "April 4, 1841",
     "partyColors": [
       "#F0C862"
+    ],
+    "partyNames": [
+      "Whig"
     ]
   },
   {
@@ -99,6 +127,10 @@
     "partyColors": [
       "#F0C862",
       "#DCDCDC"
+    ],
+    "partyNames": [
+      "Whig",
+      "Unaffiliated"
     ]
   },
   {
@@ -109,6 +141,9 @@
     "endTerm": "March 4, 1849",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -119,6 +154,9 @@
     "endTerm": "July 9, 1850",
     "partyColors": [
       "#F0C862"
+    ],
+    "partyNames": [
+      "Whig"
     ]
   },
   {
@@ -129,6 +167,9 @@
     "endTerm": "March 4, 1853",
     "partyColors": [
       "#F0C862"
+    ],
+    "partyNames": [
+      "Whig"
     ]
   },
   {
@@ -139,6 +180,9 @@
     "endTerm": "March 4, 1857",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -149,6 +193,9 @@
     "endTerm": "March 4, 1861",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -160,6 +207,10 @@
     "partyColors": [
       "#E81B23",
       "#B22222"
+    ],
+    "partyNames": [
+      "Republican",
+      "National Union"
     ]
   },
   {
@@ -171,6 +222,10 @@
     "partyColors": [
       "#B22222",
       "#3333FF"
+    ],
+    "partyNames": [
+      "National Union",
+      "Democratic"
     ]
   },
   {
@@ -181,6 +236,9 @@
     "endTerm": "March 4, 1877",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -191,6 +249,9 @@
     "endTerm": "March 4, 1881",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -201,6 +262,9 @@
     "endTerm": "September 19, 1881",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -211,6 +275,9 @@
     "endTerm": "March 4, 1885",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -221,6 +288,9 @@
     "endTerm": "March 4, 1889",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -231,6 +301,9 @@
     "endTerm": "March 4, 1893",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -241,6 +314,9 @@
     "endTerm": "March 4, 1897",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -251,6 +327,9 @@
     "endTerm": "September 14, 1901",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -261,6 +340,9 @@
     "endTerm": "March 4, 1909",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -271,6 +353,9 @@
     "endTerm": "March 4, 1913",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -281,6 +366,9 @@
     "endTerm": "March 4, 1921",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -291,6 +379,9 @@
     "endTerm": "August 2, 1923",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -301,6 +392,9 @@
     "endTerm": "March 4, 1929",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -311,6 +405,9 @@
     "endTerm": "March 4, 1933",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -321,6 +418,9 @@
     "endTerm": "April 12, 1945",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -331,6 +431,9 @@
     "endTerm": "January 20, 1953",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -341,6 +444,9 @@
     "endTerm": "January 20, 1961",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -351,6 +457,9 @@
     "endTerm": "November 22, 1963",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -361,6 +470,9 @@
     "endTerm": "January 20, 1969",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -371,6 +483,9 @@
     "endTerm": "August 9, 1974",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -381,6 +496,9 @@
     "endTerm": "January 20, 1977",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -391,6 +509,9 @@
     "endTerm": "January 20, 1981",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -401,6 +522,9 @@
     "endTerm": "January 20, 1989",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -411,6 +535,9 @@
     "endTerm": "January 20, 1993",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -421,6 +548,9 @@
     "endTerm": "January 20, 2001",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -431,6 +561,9 @@
     "endTerm": "January 20, 2009",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -441,6 +574,9 @@
     "endTerm": "January 20, 2017",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   },
   {
@@ -451,6 +587,9 @@
     "endTerm": "January 20, 2021",
     "partyColors": [
       "#E81B23"
+    ],
+    "partyNames": [
+      "Republican"
     ]
   },
   {
@@ -458,9 +597,12 @@
     "portrait": "//upload.wikimedia.org/wikipedia/commons/thumb/6/68/Joe_Biden_presidential_portrait.jpg/150px-Joe_Biden_presidential_portrait.jpg",
     "name": "Joe Biden",
     "startTerm": "January 20, 2021",
-    "endTerm": "August 22, 2024",
+    "endTerm": "August 26, 2024",
     "partyColors": [
       "#3333FF"
+    ],
+    "partyNames": [
+      "Democratic"
     ]
   }
 ]

@@ -46,4 +46,48 @@ function removeFootnoteMark(dateString) {
   return dateString.replace(/\[\w\]/, "");
 }
 
-export { getPortraitSrc, getName, getTerm, removeFootnoteMark, getPartyColors };
+function getPartyNames(node) {
+  const innerMarkup = node.innerHTML;
+
+  const splitMarkup = innerMarkup.split("<hr>");
+
+  const partyNames = splitMarkup
+    .map(function (markup) {
+      // text between <a> tags
+      const linkRegex = /<a[^>]*>(.*?)<\/a>/;
+      const italicizeRegex = /<i[^>]*>(.*?)<\/i>/;
+
+      const match = markup.match(linkRegex);
+
+      // get the matched text
+      const textContent = match ? match[1] : null;
+
+      // this should just be George Washington, Unaffiliated with no link but
+      // italicized
+      if (!textContent) {
+        const italicMatch = markup.match(italicizeRegex);
+
+        return italicMatch[1];
+      }
+
+      const noHyphen = textContent.replace(/<br\s*\/?>/gi, "");
+
+      const italicMatch = noHyphen.match(italicizeRegex);
+
+      return italicMatch ? italicMatch[1] : noHyphen;
+    })
+    .map(function (partyName) {
+      return removeFootnoteMark(partyName);
+    });
+
+  return partyNames;
+}
+
+export {
+  getPortraitSrc,
+  getName,
+  getTerm,
+  removeFootnoteMark,
+  getPartyColors,
+  getPartyNames,
+};

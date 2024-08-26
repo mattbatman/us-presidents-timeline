@@ -1,5 +1,11 @@
 import { getDocument } from "./get-document.js";
-import { getPortraitSrc, getName, getTerm, getPartyColors } from "./parsers.js";
+import {
+  getPortraitSrc,
+  getName,
+  getTerm,
+  getPartyColors,
+  getPartyNames,
+} from "./parsers.js";
 import { write } from "./write.js";
 
 async function main() {
@@ -32,6 +38,7 @@ async function main() {
         const name = getName(nameBirthDeathNode);
         const { startTerm, endTerm } = getTerm(termNode);
         const partyColors = getPartyColors(partyColorNode);
+        const partyNames = getPartyNames(partyNameNode);
 
         return {
           number: th.textContent.trim(),
@@ -40,6 +47,7 @@ async function main() {
           startTerm,
           endTerm,
           partyColors,
+          partyNames,
         };
       })
       .filter(function (data) {
