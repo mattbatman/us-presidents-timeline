@@ -181,15 +181,28 @@ function draw({
 
   const firstParty = partyNamesGroup
     .append("tspan")
-    .attr("x", textDx)
+    .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 7 : textDx(d, i) - 7))
     .attr("dy", textDy + dyInterval * 2)
     .text(({ partyNames }) => partyNames[0]);
 
   const secondParty = partyNamesGroup
     .append("tspan")
-    .attr("x", textDx)
+    .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 7 : textDx(d, i) - 7))
     .attr("dy", dyInterval)
     .text(({ partyNames }) => (partyNames[1] ? partyNames[1] : null));
+
+  // line along y-axis of party colors
+  const firstPartyNameColorPrefix = svg
+    .append("g")
+    .attr("class", "party-name-colors")
+    .selectAll("rect")
+    .data(presidents)
+    .join("rect")
+    .attr("x", textDx)
+    .attr("y", (d) => textY(d) + dyInterval * 2)
+    .attr("height", 12)
+    .attr("width", 3)
+    .style("fill", ({ partyColors }) => partyColors[0]);
 
   // border from party color to president name text
   const innerTick = svg
