@@ -196,13 +196,27 @@ function draw({
     .append("g")
     .attr("class", "party-name-colors")
     .selectAll("rect")
-    .data(presidents)
+    .data(colors)
     .join("rect")
-    .attr("x", textDx)
-    .attr("y", (d) => textY(d) + dyInterval * 2)
+    .attr("x", (d) => {
+      const indexedZeroNumber = d.number - 1;
+
+      return textDx(d, indexedZeroNumber);
+    })
+    .attr("y", (d) => {
+      const president = presidents.find(({ name }) => {
+        return name === d.name;
+      });
+
+      if (president?.partyNames[0] === d.partyName) {
+        return textY({ startTerm: president?.startTerm }) + dyInterval * 2;
+      }
+
+      return textY({ startTerm: president?.startTerm }) + dyInterval * 3;
+    })
     .attr("height", 12)
     .attr("width", 3)
-    .style("fill", ({ partyColors }) => partyColors[0]);
+    .style("fill", ({ partyColor }) => partyColor);
 
   // border from party color to president name text
   const innerTick = svg
