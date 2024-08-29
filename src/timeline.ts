@@ -255,6 +255,86 @@ function draw({
       .call(yAxis);
 
     svg.select(".x.axis").call(xAxis);
+
+    // line along y-axis of party colors
+    svg
+      .select(".party-colors")
+      .selectAll("rect")
+      .attr("x", x(0))
+      .attr("y", ({ startTerm }) => y(startTerm))
+      .attr("height", ({ endTerm, startTerm }) => y(endTerm) - y(startTerm));
+
+    // move border/legend color by party name under president
+    svg
+      .select(".party-name-colors")
+      .selectAll("rect")
+      .attr("x", (d) => {
+        const indexedZeroNumber = d.number - 1;
+
+        return textDx(d, indexedZeroNumber);
+      })
+      .attr("y", (d) => {
+        const president = presidents.find(({ name }) => {
+          return name === d.name;
+        });
+
+        if (president?.partyNames[0] === d.partyName) {
+          return (
+            textY({ startTerm: president?.startTerm }) + dyInterval * 2 + 2
+          );
+        }
+
+        return textY({ startTerm: president?.startTerm }) + dyInterval * 3 + 2;
+      });
+
+    // move presidents background and portraits
+    svg
+      .select(".party-background")
+      .selectAll("circle")
+      .attr("cy", (d: any) => y(d.startTerm) + presidentRadius)
+      .attr("cx", (d, i) =>
+        isEven(i)
+          ? x(presidentRadius + widthWithGap)
+          : x((presidentRadius + widthWithGap) * -1)
+      );
+
+    svg
+      .select(".portraits")
+      .selectAll("image")
+      .attr("y", (d: any) => y(d.startTerm))
+      .attr("x", (d, i) =>
+        isEven(i) ? x(widthWithGap) : x(widthWithGap * -1 - presidentRadius * 2)
+      )
+      .attr("href", (d: any) => d.portrait);
+
+    // name of the president text
+    meta
+      .select(".name")
+      .selectAll("text")
+      .attr("y", textY)
+      .attr("dx", textDx)
+      .attr("dy", textDy);
+
+    // term of the president text
+    meta
+      .select(".term")
+      .selectAll("text")
+      .attr("y", textY)
+      .attr("dx", textDx)
+      .attr("dy", textDy + dyInterval);
+
+    // move inner tick with party color
+    svg
+      .select(".inner-tick")
+      .selectAll("line")
+      .attr("x1", x(0))
+      .attr("x2", (d, i) =>
+        isEven(i)
+          ? x(widthWithGap + presidentRadius)
+          : x(-widthWithGap - 3 - presidentRadius)
+      )
+      .attr("y1", ({ startTerm }) => y(startTerm))
+      .attr("y2", ({ startTerm }) => y(startTerm));
   });
 }
 
