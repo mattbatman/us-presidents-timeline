@@ -124,8 +124,8 @@ function draw({
   const textY = ({ startTerm }) => y(startTerm);
   const textDx = (d, i) =>
     isEven(i)
-      ? x(partyColorWidth + 3 + presidentRadius * 2 + 5)
-      : x(-widthWithGap - presidentRadius * 2 - 4);
+      ? x(partyColorWidth + 3 + presidentRadius * 2 + 7)
+      : x(-widthWithGap - presidentRadius * 2 - 7);
   const textDy = 12;
   const dyInterval = 16;
   const textAnchor = (d, i) => (isEven(i) ? "start" : "end");
