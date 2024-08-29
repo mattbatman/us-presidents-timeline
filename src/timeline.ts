@@ -181,13 +181,13 @@ function draw({
 
   const firstParty = partyNamesGroup
     .append("tspan")
-    .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 7 : textDx(d, i) - 7))
+    .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 6 : textDx(d, i) - 6))
     .attr("dy", textDy + dyInterval * 2)
     .text(({ partyNames }) => partyNames[0]);
 
   const secondParty = partyNamesGroup
     .append("tspan")
-    .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 7 : textDx(d, i) - 7))
+    .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 6 : textDx(d, i) - 6))
     .attr("dy", dyInterval)
     .text(({ partyNames }) => (partyNames[1] ? partyNames[1] : null));
 
@@ -209,13 +209,13 @@ function draw({
       });
 
       if (president?.partyNames[0] === d.partyName) {
-        return textY({ startTerm: president?.startTerm }) + dyInterval * 2;
+        return textY({ startTerm: president?.startTerm }) + dyInterval * 2 + 2;
       }
 
-      return textY({ startTerm: president?.startTerm }) + dyInterval * 3;
+      return textY({ startTerm: president?.startTerm }) + dyInterval * 3 + 2;
     })
     .attr("height", 12)
-    .attr("width", 3)
+    .attr("width", 2)
     .style("fill", ({ partyColor }) => partyColor);
 
   // border from party color to president name text
