@@ -234,6 +234,28 @@ function draw({
     .attr("y1", ({ startTerm }) => y(startTerm))
     .attr("y2", ({ startTerm }) => y(startTerm))
     .attr("stroke", ({ partyColors }) => partyColors[0]);
+
+  d3.select(window).on("resize", function () {
+    const container = d3.select(selector);
+    const width = parseInt(container.style("width"));
+    const height = presidents.length * 150;
+
+    // reset domain and ranges based on new height and width
+    y.domain([maxYear, minYear]).range([height, 0]);
+    x.domain([(width / 2) * -1, width / 2]).range([0, width]);
+
+    // reset scales
+    yAxis.scale(y);
+    xAxis.scale(x);
+
+    // write the x-axis to the chart
+    svg
+      .select(".y.axis")
+      .attr("transform", "translate(" + x(0) + ",0)")
+      .call(yAxis);
+
+    svg.select(".x.axis").call(xAxis);
+  });
 }
 
 export { draw };
