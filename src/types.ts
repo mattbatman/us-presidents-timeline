@@ -5,6 +5,7 @@ export interface JSONData {
   startTerm: string;
   endTerm: string;
   partyColors: string[];
+  partyNames: string[];
 }
 
 export interface President {
@@ -14,6 +15,7 @@ export interface President {
   startTerm: Date | null;
   endTerm: Date | null;
   partyColors: string[];
+  partyNames: string[];
 }
 
 export interface ColorMark {
@@ -23,4 +25,5 @@ export interface ColorMark {
   startTerm: Date | null;
   endTerm: Date | null;
   partyColor: string;
+  partyName: string;
 }

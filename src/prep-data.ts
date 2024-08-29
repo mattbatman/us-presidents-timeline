@@ -10,6 +10,7 @@ function prepData(raw: JSONData[]): President[] {
       partyColors: rawPresident.partyColors,
       startTerm: timeParser(rawPresident.startTerm),
       endTerm: timeParser(rawPresident.endTerm),
+      partyNames: rawPresident.partyNames,
     };
   });
 }
@@ -17,8 +18,15 @@ function prepData(raw: JSONData[]): President[] {
 function isolateColors(data: President[]): ColorMark[] {
   return data
     .map(function (president) {
-      const { number, portrait, name, startTerm, endTerm, partyColors } =
-        president;
+      const {
+        number,
+        portrait,
+        name,
+        startTerm,
+        endTerm,
+        partyColors,
+        partyNames,
+      } = president;
 
       if (partyColors.length > 2) {
         throw new Error("Unhandled number of parties found");
@@ -32,6 +40,7 @@ function isolateColors(data: President[]): ColorMark[] {
           startTerm,
           endTerm,
           partyColor: partyColors[0],
+          partyName: partyNames[0],
         };
       }
 
@@ -41,7 +50,15 @@ function isolateColors(data: President[]): ColorMark[] {
 }
 
 function handleTwoParties(president: President): ColorMark[] {
-  const { number, portrait, name, startTerm, endTerm, partyColors } = president;
+  const {
+    number,
+    portrait,
+    name,
+    startTerm,
+    endTerm,
+    partyColors,
+    partyNames,
+  } = president;
 
   const midTerm = getMidterm({ startTerm, endTerm });
 
@@ -53,6 +70,7 @@ function handleTwoParties(president: President): ColorMark[] {
       startTerm: i === 0 ? startTerm : midTerm,
       endTerm: i === 0 ? midTerm : endTerm,
       partyColor,
+      partyName: partyNames[i],
     };
   });
 }
