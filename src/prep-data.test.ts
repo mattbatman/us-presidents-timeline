@@ -13,6 +13,7 @@ describe("isolateColors", () => {
         startTerm: "March 4, 1817",
         endTerm: "March 4, 1825",
         partyColors: ["#008000"],
+        partyNames: ["Democratic-Republican"],
       },
       {
         number: "6",
@@ -22,6 +23,7 @@ describe("isolateColors", () => {
         startTerm: "March 4, 1825",
         endTerm: "March 4, 1829",
         partyColors: ["#008000", "#FFE6B0"],
+        partyNames: ["Democratic-Republican", "National Republican"],
       },
     ];
 
@@ -38,6 +40,7 @@ describe("isolateColors", () => {
         startTerm: timeParser("March 4, 1817"),
         endTerm: timeParser("March 4, 1825"),
         partyColor: "#008000",
+        partyName: "Democratic-Republican",
       },
       {
         number: "6",
@@ -47,6 +50,7 @@ describe("isolateColors", () => {
         startTerm,
         endTerm: midTerm,
         partyColor: "#008000",
+        partyName: "Democratic-Republican",
       },
       {
         number: "6",
@@ -56,6 +60,7 @@ describe("isolateColors", () => {
         startTerm: midTerm,
         endTerm,
         partyColor: "#FFE6B0",
+        partyName: "National Republican",
       },
     ];
 

@@ -134,6 +134,7 @@ function draw({
 
   // name of the president text
   const name = meta
+    .append("g")
     .attr("class", "name")
     .selectAll("text")
     .data(presidents)
@@ -148,9 +149,8 @@ function draw({
     .style("border-top", ({ partyColors }) => `1px solid ${partyColors[0]}`);
 
   // term of the president text
-  const term = svg
+  const term = meta
     .append("g")
-    .attr("class", "meta")
     .attr("class", "term")
     .selectAll("text")
     .data(presidents)
@@ -165,6 +165,31 @@ function draw({
       ({ startTerm, endTerm }) =>
         `${timeFormatter(startTerm)} - ${timeFormatter(endTerm)}`
     );
+
+  const partyNamesGroup = meta
+    .append("g")
+    .attr("class", "parties")
+    .selectAll("text")
+    .data(presidents)
+    .join("text")
+    .style("font-size", "12px")
+    .attr("y", textY)
+    .attr("x", textDx)
+    .attr("dy", textDy + dyInterval)
+    .attr("line-anchor", "middle")
+    .attr("text-anchor", textAnchor);
+
+  const firstParty = partyNamesGroup
+    .append("tspan")
+    .attr("x", textDx)
+    .attr("dy", textDy + dyInterval * 2)
+    .text(({ partyNames }) => partyNames[0]);
+
+  const secondParty = partyNamesGroup
+    .append("tspan")
+    .attr("x", textDx)
+    .attr("dy", dyInterval)
+    .text(({ partyNames }) => (partyNames[1] ? partyNames[1] : null));
 
   // border from party color to president name text
   const innerTick = svg
