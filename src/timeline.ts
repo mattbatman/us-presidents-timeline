@@ -181,12 +181,14 @@ function draw({
 
   const firstParty = partyNamesGroup
     .append("tspan")
+    .attr("class", "first-party")
     .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 6 : textDx(d, i) - 6))
     .attr("dy", textDy + dyInterval * 2)
     .text(({ partyNames }) => partyNames[0]);
 
   const secondParty = partyNamesGroup
     .append("tspan")
+    .attr("class", "second-party")
     .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 6 : textDx(d, i) - 6))
     .attr("dy", dyInterval)
     .text(({ partyNames }) => (partyNames[1] ? partyNames[1] : null));
@@ -335,6 +337,25 @@ function draw({
       )
       .attr("y1", ({ startTerm }) => y(startTerm))
       .attr("y2", ({ startTerm }) => y(startTerm));
+
+    svg
+      .select(".parties")
+      .selectAll("text")
+      .attr("y", textY)
+      .attr("x", textDx)
+      .attr("dy", textDy + dyInterval);
+
+    svg
+      .select(".parties")
+      .selectAll("tspan.first-party")
+      .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 6 : textDx(d, i) - 6))
+      .attr("dy", textDy + dyInterval * 2);
+
+    svg
+      .select(".parties")
+      .select("tspan.second-party")
+      .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 6 : textDx(d, i) - 6))
+      .attr("dy", dyInterval);
   });
 }
 
