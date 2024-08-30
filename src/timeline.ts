@@ -354,7 +354,7 @@ function draw({
 
     svg
       .select(".parties")
-      .select("tspan.second-party")
+      .selectAll("tspan.second-party")
       .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 6 : textDx(d, i) - 6))
       .attr("dy", dyInterval);
   });
