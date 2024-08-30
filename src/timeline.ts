@@ -6,6 +6,34 @@ function isEven(num: number) {
   return num % 2 === 0;
 }
 
+function getPresidentRadius(screenWidth: number) {
+  if (screenWidth < 400) {
+    return 8;
+  }
+
+  if (screenWidth < 500) {
+    return 12;
+  }
+
+  if (screenWidth < 550) {
+    return 16;
+  }
+
+  if (screenWidth < 600) {
+    return 24;
+  }
+
+  if (screenWidth < 1000) {
+    return 32;
+  }
+
+  if (screenWidth < 1500) {
+    return 38;
+  }
+
+  return 42;
+}
+
 function draw({
   presidents,
   colors,
@@ -21,7 +49,7 @@ function draw({
     d3.min(presidents, (d) => d.startTerm) ?? new Date(1776, 6, 4);
   const maxYear = d3.max(presidents, (d) => d.endTerm) ?? new Date();
 
-  const presidentRadius = 32;
+  let presidentRadius = getPresidentRadius(window.innerWidth);
   const partyColorWidth = 4;
 
   const height = presidents.length * 150;
@@ -242,6 +270,8 @@ function draw({
     const width = parseInt(container.style("width"));
     const height = presidents.length * 150;
 
+    presidentRadius = getPresidentRadius(window.innerWidth);
+
     // reset domain and ranges based on new height and width
     y.domain([maxYear, minYear]).range([height, 0]);
     x.domain([(width / 2) * -1, width / 2]).range([0, width]);
@@ -298,7 +328,8 @@ function draw({
         isEven(i)
           ? x(presidentRadius + widthWithGap)
           : x((presidentRadius + widthWithGap) * -1)
-      );
+      )
+      .attr("r", presidentRadius + 1);
 
     svg
       .select(".portraits")
@@ -307,7 +338,10 @@ function draw({
       .attr("x", (d, i) =>
         isEven(i) ? x(widthWithGap) : x(widthWithGap * -1 - presidentRadius * 2)
       )
-      .attr("href", (d: any) => d.portrait);
+      .attr("href", (d: any) => d.portrait)
+      .attr("width", presidentRadius * 2)
+      .attr("height", presidentRadius * 2)
+      .attr("clip-path", `circle(${presidentRadius}px)`);
 
     // name of the president text
     meta
