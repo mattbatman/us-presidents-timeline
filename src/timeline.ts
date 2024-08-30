@@ -338,6 +338,7 @@ function draw({
       .attr("y1", ({ startTerm }) => y(startTerm))
       .attr("y2", ({ startTerm }) => y(startTerm));
 
+    // move color band prefixes before party names
     svg
       .select(".parties")
       .selectAll("text")
