@@ -28,7 +28,13 @@ body {
   width: 100%;
 }
 
-.title-container {
+.title-container,
+footer {
   width: 100%;
   text-align: center;
+}
+
+footer {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
