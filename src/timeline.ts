@@ -50,16 +50,16 @@ function draw({
   const maxYear = d3.max(presidents, (d) => d.endTerm) ?? new Date();
 
   let presidentRadius = getPresidentRadius(window.innerWidth);
-  const partyColorWidth = 4;
+  const partyColorWidth = 2;
 
   const height = presidents.length * 150;
   const width = parseInt(container.style("width"));
 
   const margin = {
-    left: 48,
-    right: 16,
+    left: 0,
+    right: 0,
     top: 48,
-    bottom: 48,
+    bottom: 200,
   };
 
   // create the skeleton of the chart
