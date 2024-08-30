@@ -38,3 +38,9 @@ footer {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+a,
+a:visited,
+a:active {
+  color: b32134;
+}
