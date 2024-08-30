@@ -149,14 +149,14 @@ function draw({
     .attr("height", presidentRadius * 2)
     .attr("clip-path", `circle(${presidentRadius}px)`);
 
-  const textY = ({ startTerm }) => y(startTerm);
-  const textDx = (d, i) =>
+  const textY = ({ startTerm }: any) => y(startTerm);
+  const textDx = (d: any, i: number) =>
     isEven(i)
       ? x(partyColorWidth + 3 + presidentRadius * 2 + 7)
       : x(-widthWithGap - presidentRadius * 2 - 7);
   const textDy = 12;
   const dyInterval = 16;
-  const textAnchor = (d, i) => (isEven(i) ? "start" : "end");
+  const textAnchor = (d: any, i: number) => (isEven(i) ? "start" : "end");
 
   const meta = svg.append("g").attr("class", "meta");
 
@@ -229,12 +229,12 @@ function draw({
     .data(colors)
     .join("rect")
     .attr("x", (d) => {
-      const indexedZeroNumber = d.number - 1;
+      const indexedZeroNumber = Number(d.number) - 1;
 
       return textDx(d, indexedZeroNumber);
     })
     .attr("y", (d) => {
-      const president = presidents.find(({ name }) => {
+      const president: any = presidents.find(({ name }) => {
         return name === d.name;
       });
 
@@ -293,20 +293,20 @@ function draw({
       .select(".party-colors")
       .selectAll("rect")
       .attr("x", x(0))
-      .attr("y", ({ startTerm }) => y(startTerm))
-      .attr("height", ({ endTerm, startTerm }) => y(endTerm) - y(startTerm));
+      .attr("y", ({ startTerm }: any) => y(startTerm))
+      .attr("height", ({ endTerm, startTerm }: any) => y(endTerm) - y(startTerm));
 
     // move border/legend color by party name under president
     svg
       .select(".party-name-colors")
       .selectAll("rect")
-      .attr("x", (d) => {
+      .attr("x", (d: any) => {
         const indexedZeroNumber = d.number - 1;
 
         return textDx(d, indexedZeroNumber);
       })
-      .attr("y", (d) => {
-        const president = presidents.find(({ name }) => {
+      .attr("y", (d: any) => {
+        const president: any = presidents.find(({ name }) => {
           return name === d.name;
         });
 
@@ -369,8 +369,8 @@ function draw({
           ? x(widthWithGap + presidentRadius)
           : x(-widthWithGap - 3 - presidentRadius)
       )
-      .attr("y1", ({ startTerm }) => y(startTerm))
-      .attr("y2", ({ startTerm }) => y(startTerm));
+      .attr("y1", ({ startTerm }: any) => y(startTerm))
+      .attr("y2", ({ startTerm }: any) => y(startTerm));
 
     // move color band prefixes before party names
     svg
