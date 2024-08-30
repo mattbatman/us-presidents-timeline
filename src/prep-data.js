@@ -1,7 +1,6 @@
 import { timeParser } from "./parse-time";
-import { JSONData, President, ColorMark } from "./types";
 
-function prepData(raw: JSONData[]): President[] {
+function prepData(raw) {
   return raw.map(function (rawPresident) {
     return {
       number: rawPresident.number,
@@ -15,7 +14,7 @@ function prepData(raw: JSONData[]): President[] {
   });
 }
 
-function isolateColors(data: President[]): ColorMark[] {
+function isolateColors(data) {
   return data
     .map(function (president) {
       const {
@@ -49,7 +48,7 @@ function isolateColors(data: President[]): ColorMark[] {
     .flat();
 }
 
-function handleTwoParties(president: President): ColorMark[] {
+function handleTwoParties(president) {
   const {
     number,
     portrait,
@@ -78,10 +77,7 @@ function handleTwoParties(president: President): ColorMark[] {
 function getMidterm({
   startTerm,
   endTerm,
-}: {
-  startTerm: Date;
-  endTerm: Date;
-}): Date {
+}) {
   return new Date((startTerm.getTime() + endTerm.getTime()) / 2);
 }
 
