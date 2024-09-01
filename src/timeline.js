@@ -154,6 +154,133 @@ function writePresidentPortraits({
     .attr("clip-path", `circle(${presidentRadius}px)`);
 }
 
+function writePresidentText({
+  svg,
+  presidents,
+  textY,
+  textDx,
+  textDy,
+  dyInterval,
+  textAnchor,
+  colors,
+}) {
+  const meta = svg.append("g").attr("class", "meta");
+
+  // name of the president text
+  const name = meta
+    .append("g")
+    .attr("class", "name")
+    .selectAll("text")
+    .data(presidents)
+    .join("text")
+    .style("font-size", "12px")
+    .attr("y", textY)
+    .attr("dx", textDx)
+    .attr("dy", textDy)
+    .attr("line-anchor", "middle")
+    .attr("text-anchor", textAnchor)
+    .text(({ name }) => name)
+    .style("border-top", ({ partyColors }) => `1px solid ${partyColors[0]}`);
+
+  // term of the president text
+  const term = meta
+    .append("g")
+    .attr("class", "term")
+    .selectAll("text")
+    .data(presidents)
+    .join("text")
+    .style("font-size", "12px")
+    .attr("y", textY)
+    .attr("dx", textDx)
+    .attr("dy", textDy + dyInterval)
+    .attr("line-anchor", "middle")
+    .attr("text-anchor", textAnchor)
+    .text(
+      ({ startTerm, endTerm }) =>
+        `${timeFormatter(startTerm)} - ${timeFormatter(endTerm)}`
+    );
+
+  const partyNamesGroup = meta
+    .append("g")
+    .attr("class", "parties")
+    .selectAll("text")
+    .data(presidents)
+    .join("text")
+    .style("font-size", "12px")
+    .attr("y", textY)
+    .attr("x", textDx)
+    .attr("dy", textDy + dyInterval)
+    .attr("line-anchor", "middle")
+    .attr("text-anchor", textAnchor);
+
+  const firstParty = partyNamesGroup
+    .append("tspan")
+    .attr("class", "first-party")
+    .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 6 : textDx(d, i) - 6))
+    .attr("dy", textDy + dyInterval * 2)
+    .text(({ partyNames }) => partyNames[0]);
+
+  const secondParty = partyNamesGroup
+    .append("tspan")
+    .attr("class", "second-party")
+    .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 6 : textDx(d, i) - 6))
+    .attr("dy", dyInterval)
+    .text(({ partyNames }) => (partyNames[1] ? partyNames[1] : null));
+
+  const partyNameColorPrefix = svg
+    .append("g")
+    .attr("class", "party-name-colors")
+    .selectAll("rect")
+    .data(colors)
+    .join("rect")
+    .attr("x", (d) => {
+      const indexedZeroNumber = Number(d.number) - 1;
+
+      return textDx(d, indexedZeroNumber);
+    })
+    .attr("y", (d) => {
+      const president = presidents.find(({ name }) => {
+        return name === d.name;
+      });
+
+      if (president?.partyNames[0] === d.partyName) {
+        return textY({ startTerm: president?.startTerm }) + dyInterval * 2 + 2;
+      }
+
+      return textY({ startTerm: president?.startTerm }) + dyInterval * 3 + 2;
+    })
+    .attr("height", 12)
+    .attr("width", 2)
+    .style("fill", ({ partyColor }) => partyColor);
+
+  return { meta };
+}
+
+function writeInnerTick({
+  svg,
+  presidents,
+  widthWithGap,
+  presidentRadius,
+  x,
+  y,
+}) {
+  return svg
+    .append("g")
+    .attr("class", "inner-tick")
+    .selectAll("line")
+    .data(presidents)
+    .join("line")
+    .attr("x1", x(0))
+    .attr("x2", (d, i) =>
+      isEven(i)
+        ? x(widthWithGap + presidentRadius)
+        : x(-widthWithGap - 3 - presidentRadius)
+    )
+    .attr("y1", ({ startTerm }) => y(startTerm))
+    .attr("y2", ({ startTerm }) => y(startTerm))
+    .attr("stroke", ({ partyColors }) => partyColors[0]);
+}
+
 function draw({ presidents, colors, selector }) {
   // select graph container
   const container = d3.select(selector);
@@ -231,112 +358,26 @@ function draw({ presidents, colors, selector }) {
   const dyInterval = 16;
   const textAnchor = (d, i) => (isEven(i) ? "start" : "end");
 
-  const meta = svg.append("g").attr("class", "meta");
-
-  // name of the president text
-  const name = meta
-    .append("g")
-    .attr("class", "name")
-    .selectAll("text")
-    .data(presidents)
-    .join("text")
-    .style("font-size", "12px")
-    .attr("y", textY)
-    .attr("dx", textDx)
-    .attr("dy", textDy)
-    .attr("line-anchor", "middle")
-    .attr("text-anchor", textAnchor)
-    .text(({ name }) => name)
-    .style("border-top", ({ partyColors }) => `1px solid ${partyColors[0]}`);
-
-  // term of the president text
-  const term = meta
-    .append("g")
-    .attr("class", "term")
-    .selectAll("text")
-    .data(presidents)
-    .join("text")
-    .style("font-size", "12px")
-    .attr("y", textY)
-    .attr("dx", textDx)
-    .attr("dy", textDy + dyInterval)
-    .attr("line-anchor", "middle")
-    .attr("text-anchor", textAnchor)
-    .text(
-      ({ startTerm, endTerm }) =>
-        `${timeFormatter(startTerm)} - ${timeFormatter(endTerm)}`
-    );
-
-  const partyNamesGroup = meta
-    .append("g")
-    .attr("class", "parties")
-    .selectAll("text")
-    .data(presidents)
-    .join("text")
-    .style("font-size", "12px")
-    .attr("y", textY)
-    .attr("x", textDx)
-    .attr("dy", textDy + dyInterval)
-    .attr("line-anchor", "middle")
-    .attr("text-anchor", textAnchor);
-
-  const firstParty = partyNamesGroup
-    .append("tspan")
-    .attr("class", "first-party")
-    .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 6 : textDx(d, i) - 6))
-    .attr("dy", textDy + dyInterval * 2)
-    .text(({ partyNames }) => partyNames[0]);
-
-  const secondParty = partyNamesGroup
-    .append("tspan")
-    .attr("class", "second-party")
-    .attr("x", (d, i) => (isEven(i) ? textDx(d, i) + 6 : textDx(d, i) - 6))
-    .attr("dy", dyInterval)
-    .text(({ partyNames }) => (partyNames[1] ? partyNames[1] : null));
-
-  // line along y-axis of party colors
-  const firstPartyNameColorPrefix = svg
-    .append("g")
-    .attr("class", "party-name-colors")
-    .selectAll("rect")
-    .data(colors)
-    .join("rect")
-    .attr("x", (d) => {
-      const indexedZeroNumber = Number(d.number) - 1;
-
-      return textDx(d, indexedZeroNumber);
-    })
-    .attr("y", (d) => {
-      const president = presidents.find(({ name }) => {
-        return name === d.name;
-      });
-
-      if (president?.partyNames[0] === d.partyName) {
-        return textY({ startTerm: president?.startTerm }) + dyInterval * 2 + 2;
-      }
-
-      return textY({ startTerm: president?.startTerm }) + dyInterval * 3 + 2;
-    })
-    .attr("height", 12)
-    .attr("width", 2)
-    .style("fill", ({ partyColor }) => partyColor);
+  const { meta } = writePresidentText({
+    svg,
+    presidents,
+    textY,
+    textDx,
+    textDy,
+    dyInterval,
+    textAnchor,
+    colors,
+  });
 
   // border from party color to president name text
-  const innerTick = svg
-    .append("g")
-    .attr("class", "inner-tick")
-    .selectAll("line")
-    .data(presidents)
-    .join("line")
-    .attr("x1", x(0))
-    .attr("x2", (d, i) =>
-      isEven(i)
-        ? x(widthWithGap + presidentRadius)
-        : x(-widthWithGap - 3 - presidentRadius)
-    )
-    .attr("y1", ({ startTerm }) => y(startTerm))
-    .attr("y2", ({ startTerm }) => y(startTerm))
-    .attr("stroke", ({ partyColors }) => partyColors[0]);
+  writeInnerTick({
+    svg,
+    presidents,
+    widthWithGap,
+    presidentRadius,
+    x,
+    y,
+  });
 
   d3.select(window).on("resize", function () {
     const container = d3.select(selector);
