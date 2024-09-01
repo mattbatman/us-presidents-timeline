@@ -33,28 +33,79 @@ function getPresidentRadius(screenWidth) {
   return 42;
 }
 
-function draw({
-  presidents,
-  colors,
-  selector,
-}) {
-  const container = d3.select(selector);
-
+function getMinMaxYears({ presidents }) {
   const minYear =
     d3.min(presidents, (d) => d.startTerm) ?? new Date(1776, 6, 4);
+
   const maxYear = d3.max(presidents, (d) => d.endTerm) ?? new Date();
 
+  return {
+    minYear,
+    maxYear,
+  };
+}
+
+function getY({ height, minYear, maxYear }) {
+  // set y scale
+  const y = d3.scaleTime();
+  // set place axis on chart
+  const yAxis = d3.axisLeft(y).tickPadding(2);
+
+  // domain -> values in data
+  // range -> location in chart
+
+  y.domain([maxYear, minYear]).range([height, 0]);
+
+  yAxis.scale(y);
+
+  return {
+    y,
+    yAxis,
+  };
+}
+
+function writeYAxis({ svg, x, yAxis }) {
+  svg
+    .select(".y.axis")
+    .attr("transform", "translate(" + x(0) + ",0)")
+    .call(yAxis);
+}
+
+function writeXAxs({ svg, xAxis }) {
+  svg.select(".x.axis").call(xAxis);
+}
+
+function getX({ width }) {
+  const x = d3.scaleLinear();
+  const xAxis = d3.axisBottom(x);
+
+  // domain -> values in data
+  // range -> location in chart
+  x.domain([(width / 2) * -1, width / 2]).range([0, width]);
+
+  xAxis.scale(x);
+
+  return {
+    x,
+    xAxis,
+  };
+}
+
+function draw({ presidents, colors, selector }) {
+  // select graph container
+  const container = d3.select(selector);
+
+  // set various size variables
   let presidentRadius = getPresidentRadius(window.innerWidth);
   const partyColorWidth = 2;
-
   const height = presidents.length * 150;
   const width = parseInt(container.style("width"));
 
   const margin = {
     left: 0,
     right: 0,
-    top: 48,
-    bottom: 200,
+    top: 0,
+    bottom: 0,
   };
 
   // create the skeleton of the chart
@@ -70,31 +121,16 @@ function draw({
 
   // style y-axis tick labels
 
-  // set y scale
-  const y = d3.scaleTime();
-  // set place axis on chart
-  const yAxis = d3.axisLeft(y).tickPadding(2);
+  // get values for scales
+  const { minYear, maxYear } = getMinMaxYears({ presidents });
 
-  const x = d3.scaleLinear();
-  const xAxis = d3.axisBottom(x);
+  const { y, yAxis } = getY({ height, minYear, maxYear });
 
-  // domain -> values in data
-  // range -> location in chart
-  y.domain([maxYear, minYear]).range([height, 0]);
-  x.domain([(width / 2) * -1, width / 2]).range([0, width]);
+  const { x, xAxis } = getX({ width });
 
-  // sets the scale and returns the axis
-  yAxis.scale(y);
+  writeYAxis({ svg, x, yAxis });
 
-  xAxis.scale(x);
-
-  // write the x-axis to the chart
-  svg
-    .select(".y.axis")
-    .attr("transform", "translate(" + x(0) + ",0)")
-    .call(yAxis);
-
-  svg.select(".x.axis").call(xAxis);
+  writeXAxs({ svg, xAxis });
 
   // line along y-axis of party colors
   const partyColors = svg
