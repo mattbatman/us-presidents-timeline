@@ -349,6 +349,7 @@ function draw({ presidents, colors, selector }) {
     presidentRadius,
   });
 
+  // start of the president name text
   const textY = ({ startTerm }) => y(startTerm);
   const textDx = (d, i) =>
     isEven(i)
