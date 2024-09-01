@@ -91,13 +91,81 @@ function getX({ width }) {
   };
 }
 
+function writePartyColorsAlongAxis({ svg, colors, partyColorWidth, x, y }) {
+  return svg
+    .append("g")
+    .attr("class", "party-colors")
+    .selectAll("rect")
+    .data(colors)
+    .join("rect")
+    .attr("x", x(0))
+    .attr("y", ({ startTerm }) => y(startTerm))
+    .attr("height", ({ endTerm, startTerm }) => y(endTerm) - y(startTerm))
+    .attr("width", partyColorWidth)
+    .style("fill", ({ partyColor }) => partyColor);
+}
+
+function writePresidentBackgrounds({
+  svg,
+  presidents,
+  y,
+  x,
+  presidentRadius,
+  widthWithGap,
+}) {
+  return svg
+    .append("g")
+    .attr("class", "party-background")
+    .selectAll("circle")
+    .data(presidents)
+    .join("circle")
+    .attr("fill", ({ partyColors }) => partyColors[0])
+    .attr("cy", (d) => y(d.startTerm) + presidentRadius)
+    .attr("cx", (d, i) =>
+      isEven(i)
+        ? x(presidentRadius + widthWithGap)
+        : x((presidentRadius + widthWithGap) * -1)
+    )
+    .attr("r", presidentRadius + 1)
+    .attr("stroke-width", 2);
+}
+
+function writePresidentPortraits({
+  svg,
+  presidents,
+  x,
+  y,
+  widthWithGap,
+  presidentRadius,
+}) {
+  return svg
+    .append("g")
+    .attr("class", "portraits")
+    .selectAll("image")
+    .data(presidents)
+    .join("image")
+    .attr("y", (d) => y(d.startTerm))
+    .attr("x", (d, i) =>
+      isEven(i) ? x(widthWithGap) : x(widthWithGap * -1 - presidentRadius * 2)
+    )
+    .attr("href", (d) => d.portrait)
+    .attr("width", presidentRadius * 2)
+    .attr("height", presidentRadius * 2)
+    .attr("clip-path", `circle(${presidentRadius}px)`);
+}
+
 function draw({ presidents, colors, selector }) {
   // select graph container
   const container = d3.select(selector);
 
   // set various size variables
   let presidentRadius = getPresidentRadius(window.innerWidth);
+
+  // the width of the party colors along the y-axis
   const partyColorWidth = 2;
+  // the gap between the party colors axis line and the president portraits
+  const widthWithGap = partyColorWidth + 3;
+
   const height = presidents.length * 150;
   const width = parseInt(container.style("width"));
 
@@ -132,53 +200,27 @@ function draw({ presidents, colors, selector }) {
 
   writeXAxs({ svg, xAxis });
 
-  // line along y-axis of party colors
-  const partyColors = svg
-    .append("g")
-    .attr("class", "party-colors")
-    .selectAll("rect")
-    .data(colors)
-    .join("rect")
-    .attr("x", x(0))
-    .attr("y", ({ startTerm }) => y(startTerm))
-    .attr("height", ({ endTerm, startTerm }) => y(endTerm) - y(startTerm))
-    .attr("width", partyColorWidth)
-    .style("fill", ({ partyColor }) => partyColor);
-
-  const widthWithGap = partyColorWidth + 3;
+  writePartyColorsAlongAxis({ svg, colors, partyColorWidth, x, y });
 
   // mark presidents background
-  const presidentBackground = svg
-    .append("g")
-    .attr("class", "party-background")
-    .selectAll("circle")
-    .data(presidents)
-    .join("circle")
-    .attr("fill", ({ partyColors }) => partyColors[0])
-    .attr("cy", (d) => y(d.startTerm) + presidentRadius)
-    .attr("cx", (d, i) =>
-      isEven(i)
-        ? x(presidentRadius + widthWithGap)
-        : x((presidentRadius + widthWithGap) * -1)
-    )
-    .attr("r", presidentRadius + 1)
-    .attr("stroke-width", 2);
+  writePresidentBackgrounds({
+    svg,
+    presidents,
+    y,
+    x,
+    presidentRadius,
+    widthWithGap,
+  });
 
   // mark presidents
-  const portraits = svg
-    .append("g")
-    .attr("class", "portraits")
-    .selectAll("image")
-    .data(presidents)
-    .join("image")
-    .attr("y", (d) => y(d.startTerm))
-    .attr("x", (d, i) =>
-      isEven(i) ? x(widthWithGap) : x(widthWithGap * -1 - presidentRadius * 2)
-    )
-    .attr("href", (d) => d.portrait)
-    .attr("width", presidentRadius * 2)
-    .attr("height", presidentRadius * 2)
-    .attr("clip-path", `circle(${presidentRadius}px)`);
+  writePresidentPortraits({
+    svg,
+    presidents,
+    x,
+    y,
+    widthWithGap,
+    presidentRadius,
+  });
 
   const textY = ({ startTerm }) => y(startTerm);
   const textDx = (d, i) =>
